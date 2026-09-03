@@ -1,6 +1,6 @@
 ---
 name: jin-video-director-flow
-description: Orchestrate modular AI video prompt skills to turn rough ideas, image references, video references, storyboards, or emotional beats into duration-aware shot prompts. Route work through idea parsing, asset direction, shot design, performance, continuity, failure diagnostics, and sample learning instead of solving every responsibility inside one monolithic prompt.
+description: Orchestrate modular AI video prompt skills to turn rough ideas, image references, video references, storyboards, emotional beats, or short-form Q-version social content into duration-aware shot prompts. Route work through specialized skills instead of solving every responsibility inside one monolithic prompt.
 ---
 
 # JIN Video Director Flow
@@ -11,6 +11,7 @@ description: Orchestrate modular AI video prompt skills to turn rough ideas, ima
 
 根据任务按需读取：
 
+- **Q版 / 拟人化角色、9:16 社交媒体、约 8–15 秒、动作与情绪驱动短视频** → `skills/qversion-social-short-video/SKILL.md`
 - 粗糙自然语言、零散画面、情绪碎片 → `skills/idea-parser/SKILL.md`
 - 判断场景图、角色图、坐姿轮廓、面部图、故事板、结尾帧等素材是否需要 → `skills/asset-director/SKILL.md`
 - 设计本镜唯一任务、机位、运镜、空间、起幅／过程／落幅 → `skills/shot-designer/SKILL.md`
@@ -22,6 +23,23 @@ description: Orchestrate modular AI video prompt skills to turn rough ideas, ima
 故事板专项仍读取 `references/storyboard-workflow.md`；模板职责读取 `references/annotated-template.md`；正式输出可使用 `assets/clean-template.md`。
 
 只读取当前任务需要的模块，不机械全部展开。
+
+## Q版日常生产分支优先级
+
+当用户明确在做每天发布的 Q版 / 拟人化社交短视频，尤其约 15 秒时，优先进入 `qversion-social-short-video`，不要先把它强行改造成通用电影镜头流程。
+
+该分支保留一份不可覆盖的 Claude 原始方法论：`skills/qversion-social-short-video/references/claude-original-methodology.md`。长期实测经验先作为基线保存；新发现通过样本学习增量验证，不删除旧经验、不把开放问题伪装成已验证规则。
+
+只有当该 Q版任务同时出现以下需求时，再叠加其他模块：
+
+- 缺少本镜所需角色姿态、面部、场景或关键帧资产 → 叠加 `asset-director`；
+- 单镜头机位、空间揭示或摄影机运动非常复杂 → 叠加 `shot-designer`；
+- 需要精细微表演控制 → 叠加 `performance-director`；
+- 与上一条 / 下一条视频做精确动接 → 叠加 `continuity-director`；
+- 成片出现明确故障需要定位 → 叠加 `failure-diagnostics`；
+- 用户提供提示词与成片反馈 → 叠加 `sample-learning`。
+
+不要因为总导演体系更复杂，就覆盖已经在 Q版 15 秒日常生产中有效的简洁方法。
 
 ## 工作优先级
 
@@ -35,7 +53,9 @@ description: Orchestrate modular AI video prompt skills to turn rough ideas, ima
 
 ## 执行流程
 
-### 1. 先判断输入成熟度
+### 1. 先判断输入成熟度与任务类型
+
+先判断是不是 Q版社交短视频专用任务。是的话优先使用对应分支。
 
 如果用户已经给出明确镜头结构，直接进入对应模块。
 
@@ -66,6 +86,8 @@ description: Orchestrate modular AI video prompt skills to turn rough ideas, ima
 
 交付前核对总时长与各镜时长之和。故事板中的可读时长、镜头标签若保留，必须与最终文字一致。
 
+Q版 15 秒分支可使用 5–7 个动作／状态阶段，但这些阶段不等于强制 5–7 次剪辑；具体以其专用 Skill 的原始经验为准。
+
 ### 4. 搭建全局条件
 
 按需填写：
@@ -81,7 +103,7 @@ description: Orchestrate modular AI video prompt skills to turn rough ideas, ima
 
 > stylized animated cinematic, semi-real stylized character, painterly realistic environment.
 
-它表示整体影像／角色／环境三层风格分工，不是所有任务固定前缀。
+它表示整体影像／角色／环境三层风格分工，不是所有任务固定前缀，更不能覆盖 Q版分支已经稳定的角色固定层。
 
 ### 5. 设计镜头
 
@@ -122,6 +144,8 @@ description: Orchestrate modular AI video prompt skills to turn rough ideas, ima
 
 只在画面流程完成后写声音。环境声、动作声、设备声、呼吸、台词或音乐必须跟随可见事件，不新增另一条抢夺注意力的叙事。
 
+Q版分支关于“多角色错开发声、角色发声权限、拟声词”的长期经验优先保留，不被通用声音规则覆盖。
+
 ### 9. 预测崩溃
 
 使用 `failure-diagnostics` 从本次任务推导少量高风险错误。
@@ -153,3 +177,5 @@ description: Orchestrate modular AI video prompt skills to turn rough ideas, ima
 4. 新发现优先修改对应独立 Skill，其次模板，再考虑总 orchestrator。
 
 案例细节不要直接写死成全局规则。例如“坐姿侧背影角色图”应抽象成“按本镜真正可见角度与姿态选择定向资产”。
+
+对于 Q版社交短视频，Claude 原始方法论文件永远作为历史经验基线保留；后续修改只在专用 Skill、实验记录或样本学习层增量发生。
