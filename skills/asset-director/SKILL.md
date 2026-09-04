@@ -1,6 +1,6 @@
 ---
 name: asset-director
-description: Decide the minimum reference assets needed for an AI video shot and assign each asset a precise responsibility. Use when choosing between scene images, character references, pose silhouettes, face references, storyboards, end frames, or next-shot references.
+description: Decide the minimum reference assets needed for an AI video shot and assign each asset a precise responsibility. Use when choosing between scene images, character references, pose silhouettes, face references, storyboards, end frames, next-shot references, or special-effect reference assets.
 ---
 
 # Asset Director
@@ -22,6 +22,23 @@ description: Decide the minimum reference assets needed for an AI video shot and
 - 后续才露出正脸时，再补正脸、头部或对应角度资产。
 - 后续才入画的新角色，如果场景图没有身份锚点，应补单独角色图。
 - 不要为了“完整”而要求本镜根本看不到的多视图。
+
+## 技能特效资产判断
+
+当镜头包含独特技能、施法、能量形态或特殊视觉元素时，先检查文字是否已经能够清楚说明其**可见形态**。
+
+如果可以稳定描述，例如“双手之间汇聚一个持续增亮的蓝色能量球”，优先使用清楚文字，不机械增加资产。
+
+如果技能具有强辨识度，而文字很难准确表达它的形状、结构、材质、颜色关系、运动轨迹或与角色／武器的连接方式，则把**技能特效本体**视为一种可选参考资产，并提醒使用者考虑先生成对应的技能特效参考图，再用于后续视频生成。
+
+例如可能需要资产的情况：
+
+- 独特符文阵或复杂几何能量结构；
+- 特定世界观专属火焰、烟雾、晶体或粒子形态；
+- 与武器结合方式非常具体的技能；
+- 仅用“魔法、能量、贤者技能”等抽象词容易被模型生成成泛用特效的情况。
+
+不要把“有技能镜头”自动等同于“必须补技能资产”。先判断文字是否足够，再决定是否建议补充。
 
 ## 资产职责必须单一清楚
 
