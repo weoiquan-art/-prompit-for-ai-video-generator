@@ -19,6 +19,20 @@ description: Learn reusable AI video prompting methods from paired original prom
 4. 一个样本中的偶然现象不要升级成通用规则。
 5. 多个样本重复出现相同因果关系后，才考虑进入主流程。
 
+## 规则变更必须经过创作者过目
+
+分析样本时可以主动提出新的规则候选、模板改法或模块建议，但**不得仅因为 AI 自己判断“值得加入”就直接写进 Skill**。
+
+执行原则：
+
+1. 用户已经明确要求加入或明确认可的修改，可以直接落地。
+2. AI 自己从案例中推导出的新增规则，先作为**候选建议**说明：准备加什么、为什么、会影响哪个 Skill。
+3. 等创作者过目并明确同意后，再正式修改对应 Skill、模板或 orchestrator。
+4. 创作者认为“不需要升成规则”的案例做法，保持为案例经验，不为了体系完整而强行制度化。
+5. 不得趁其他已批准修改时夹带未经讨论的新规则。
+
+目标是让 Skill 持续学习，但最终方法论的升级权由创作者保留。
+
 ## 分析维度
 
 按需检查：
@@ -36,12 +50,14 @@ description: Learn reusable AI video prompting methods from paired original prom
 
 ## 更新优先级
 
-新发现优先按以下顺序落地：
+新发现优先按以下顺序提出修改建议：
 
 1. 修改某个独立 Skill 的判断规则；
 2. 修改模板格子职责或输出顺序；
 3. 增加一个经过验证的新模块；
 4. 最后才修改总 orchestrator。
+
+以上只是**建议落点顺序**；若修改内容不是用户已经明确批准的事项，仍必须先经过创作者过目再落地。
 
 避免把案例细节写死成全局规则。例如“坐姿侧背影角色图”背后的规则应写成“按本镜真正可见角度和姿态选择定向资产”。
 
@@ -59,6 +75,8 @@ description: Learn reusable AI video prompting methods from paired original prom
 【暂不升级为规则】
 - ...
 
-【建议修改位置】
-- skill / template / orchestrator：修改理由
+【候选 Skill 修改（需创作者过目）】
+- 想增加 / 修改什么：
+- 理由：
+- 预计修改位置：skill / template / orchestrator
 ```
