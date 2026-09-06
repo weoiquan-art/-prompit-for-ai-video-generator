@@ -14,6 +14,7 @@ description: Orchestrate modular AI video prompt skills to turn rough ideas, ima
 - **Q版 / 拟人化角色、9:16 社交媒体、约 8–15 秒、动作与情绪驱动短视频** → `skills/qversion-social-short-video/SKILL.md`
 - 粗糙自然语言、零散画面、情绪碎片 → `skills/idea-parser/SKILL.md`
 - 判断场景图、角色图、坐姿轮廓、面部图、故事板、结尾帧等素材是否需要 → `skills/asset-director/SKILL.md`
+- **当镜头需要 Astra 准备 16:9 分镜、Blender 白膜 / previs、角色 blocking、动作演员 / Mocap 学习资产、VFX 等可视化载体时** → `skills/astra-video-asset-prep/SKILL.md`
 - 设计本镜唯一任务、机位、运镜、空间、起幅／过程／落幅 → `skills/shot-designer/SKILL.md`
 - 把情绪变成眼神、呼吸、头肩、手指、重心等可见动作 → `skills/performance-director/SKILL.md`
 - 上一镜进入本镜、动接、遮挡接、视线接、下一镜出口 → `skills/continuity-director/SKILL.md`
@@ -33,6 +34,7 @@ description: Orchestrate modular AI video prompt skills to turn rough ideas, ima
 只有当该 Q版任务同时出现以下需求时，再叠加其他模块：
 
 - 缺少本镜所需角色姿态、面部、场景或关键帧资产 → 叠加 `asset-director`；
+- **复杂空间、大姿势、高难度身体动作或动作过程不适合只靠文字猜测，需要先让 Astra 准备分镜 / Blender 白膜 / 动作学习载体** → 叠加 `astra-video-asset-prep`；
 - 单镜头机位、空间揭示或摄影机运动非常复杂 → 叠加 `shot-designer`；
 - 需要精细微表演控制 → 叠加 `performance-director`；
 - 与上一条 / 下一条视频做精确动接 → 叠加 `continuity-director`；
@@ -75,6 +77,8 @@ description: Orchestrate modular AI video prompt skills to turn rough ideas, ima
 - 后续才露正脸时，再补面部或对应角度资产；
 - 后续新入画角色若场景图没有身份锚点，再补单独角色资产；
 - 不机械要求与本镜无关的完整多视图。
+
+如果缺的不是“角色长什么样”，而是**空间、构图、大姿势、动作过程本身难以仅靠文字稳定控制**，不要继续堆角色图；改用 `astra-video-asset-prep` 生成 Astra 资产任务书，按需准备 16:9 分镜、Blender 白膜 / previs、动作演员 / Mocap 学习资产或其他可视化载体。
 
 用户明确说明真实资产与界面预览不一致时，以用户说明为准，不从错配预览反推生成输入。
 
@@ -132,6 +136,8 @@ Q版 15 秒分支可使用 5–7 个动作／状态阶段，但这些阶段不�
 
 背影／侧背影镜头不要强行写不可见的正脸表情，改用头肩、呼吸、手部、脊背与重心。
 
+如果表演包含高难度身体动作，先判断是否需要 `astra-video-asset-prep` 为动作准备真人演员 / Mocap / blocking 学习载体；这些资产负责身体怎么动，不负责最终角色身份。
+
 ### 7. 处理跨镜连续性
 
 有上一镜或下一镜时，使用 `continuity-director`。
@@ -164,6 +170,8 @@ Q版分支关于“多角色错开发声、角色发声权限、拟声词”的�
 2. 素材需求清单；
 3. 真正必要的问题；
 4. 可复制提示词。
+
+当用户明确说“先让 Astra 准备资产”时，不提前写最终视频提示词；先调用 `astra-video-asset-prep`，输出可直接交给 Astra 的资产任务书，等资产回来再进入正式视频提示词。
 
 不把内部模块分析过程全部塞进最终提示词。
 
