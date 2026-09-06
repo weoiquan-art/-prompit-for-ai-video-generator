@@ -1,11 +1,17 @@
 ---
 name: asset-director
-description: Decide the minimum reference assets needed for an AI video shot and assign each asset a precise responsibility. Use when choosing between scene images, character references, pose silhouettes, face references, storyboards, end frames, next-shot references, or special-effect reference assets.
+description: Decide the minimum reference assets needed for an AI video shot and assign each asset a precise responsibility. Use when choosing between scene images, character references, pose silhouettes, face references, storyboards, end frames, next-shot references, special-effect reference assets, or when deciding whether complex shots need a dedicated Astra asset-preparation pass.
 ---
 
 # Asset Director
 
 只判断“这一镜真正需要什么素材，以及每份素材负责什么”。不要把所有角色都机械要求三视图或四视图。
+
+如果已经判断出本镜需要 **16:9 分镜、Blender 白膜 / previs、角色 blocking、动作演员 / Mocap 学习资产或其他复杂可视化载体**，本 Skill 不继续承担制作说明；转交：
+
+`../astra-video-asset-prep/SKILL.md`
+
+由它生成可直接交给 Astra 的专业资产任务书。
 
 ## 判断顺序
 
@@ -13,6 +19,7 @@ description: Decide the minimum reference assets needed for an AI video shot and
 2. 再看本镜真正可见的角度与身份信息。
 3. 只有场景图无法稳定承担的信息，才补角色或局部资产。
 4. 精确动接优先使用上一镜结尾帧；复杂多镜调度才强制考虑故事板。
+5. 如果真正缺的是“空间 / 构图 / 大姿势 / 动作过程的可视化骨架”，不要继续堆角色身份图，改判断是否需要 Astra 资产准备。
 
 ## 角色资产原则
 
@@ -22,6 +29,25 @@ description: Decide the minimum reference assets needed for an AI video shot and
 - 后续才露出正脸时，再补正脸、头部或对应角度资产。
 - 后续才入画的新角色，如果场景图没有身份锚点，应补单独角色图。
 - 不要为了“完整”而要求本镜根本看不到的多视图。
+
+## 复杂动作 / 空间资产判断
+
+当镜头难点来自以下内容时，考虑转交 `astra-video-asset-prep`：
+
+- 人物位置、朝向或前后关系容易漂移；
+- 需要锁定景别、相机位置、人物占比；
+- 多角色 / 多层空间 blocking 复杂；
+- 需要明显大姿势、重心变化或高难度身体动作；
+- 动作更适合通过真人演员、动作捕捉或代理动画学习；
+- 正式视频生成成本高，希望先验证空间、机位和动作是否成立。
+
+这种情况下可以按问题选择：
+
+- 16:9 线稿分镜：锁这一镜看什么；
+- Blender 白膜 / previs：锁空间、机位、角色位置和大姿势；
+- 动作演员 / Mocap / 动作参考：锁身体具体怎么动。
+
+本 Skill 只判断需要什么，不在这里展开 Astra 的制作指令。
 
 ## 技能特效资产判断
 
@@ -73,6 +99,15 @@ description: Decide the minimum reference assets needed for an AI video shot and
 
 【当前不需要】
 - 素材：为什么本镜不需要
+```
+
+若需要 Astra 制作复杂资产，在上述判断后增加：
+
+```text
+【转交 Astra 资产准备】
+- 需要的载体：...
+- 原因：...
+- 下一步：读取 ../astra-video-asset-prep/SKILL.md 生成完整执行提示词。
 ```
 
 素材判断必须服务本镜，不追求资产数量最大化。
