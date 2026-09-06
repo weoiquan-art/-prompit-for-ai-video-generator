@@ -4,6 +4,13 @@
 计划分析日期：2026-09-07（Asia/Kuala_Lumpur）。仅记录计划，未设置自动执行。
 工作分支：`higg`
 
+## Zephyr
+
+- 来源：https://higgsfield.ai/@higgsfield.studio/projects/zephyr
+- 用户要求：与 Zephyr Special 一同加入分支，留待明天分析。
+- 状态：已收录链接；尚未阅读或验证项目内容及附件。
+- 后续：与 Zephyr Special、Hell Grind 对照，区分共通方法、项目特有做法及待测试建议。
+
 ## Zephyr Special
 
 - 来源：https://higgsfield.ai/@higgsfield.studio/projects/zephyr-special
