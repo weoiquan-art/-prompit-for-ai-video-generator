@@ -1,13 +1,96 @@
 ---
 name: image-asset-generator
-description: Plan and generate reference images that will later be used as AI video assets. Use when a video project needs a new character reference, pose-specific reference, local body/detail close-up, prop reference, or other image asset before video generation.
+description: Plan and generate reference images that will later be used as AI video assets. Use when a video project needs a character reference, pose-specific reference, local body/detail close-up, scene plate, prop reference, VFX asset, storyboard frame, or a controlled edit of an existing asset before video generation.
 ---
 
 # Image Asset Generator
 
 这是视频生成之前的生图支线。它负责把后续镜头真正需要的视觉信息提前做成可用参考资产，而不是为了“资产完整”机械生成大量图片。
 
-当前先保留一条已经由创作者确认的工作规则。
+当前方法吸收 `../practical-case-skills/lira/SKILL.md` 中已经用于 Higgsfield 图像生产的任务路由、镜头锚点、Prompt 密度和局部编辑经验，但不照搬其平台特定模型分配。
+
+## 先路由资产任务
+
+先判断当前到底要做什么：
+
+- **角色身份资产**：脸、身体比例、服装、发型；
+- **角色角度 / 姿态资产**：侧背、坐姿、蹲姿、卧姿、持枪、施法、回头等；
+- **局部资产**：手、眼、耳环、伤痕、鞋、武器握持等；
+- **场景资产**：空间、建筑、地标、主要材质与灯光方向；
+- **道具资产**：形状、尺度、材质、可见状态；
+- **技能 / VFX 资产**：独特能量、符文、烟雾、晶体等；
+- **分镜 / 关键帧资产**：锁构图、主体位置、大姿势与镜头任务；
+- **已有资产编辑**：只修指定变量并尽量保持其他内容不动。
+
+不同任务不要强行套同一套 Prompt。
+
+## 参考图负责什么，就只让它负责什么
+
+资产已经能提供的视觉事实，不要再用长篇文字重新建一次。
+
+例如：
+
+- 角色图负责身份与服装；
+- 姿态图负责大姿势；
+- 场景图负责地理与材质；
+- 分镜图负责构图与人物位置；
+- VFX 图负责特殊效果外观。
+
+如果平台本身有身份锚点 / reference system，应让平台能力承担身份一致性，Prompt 只补当前资产真正需要的可见信息。
+
+## Prompt 密度：控制优先于字数
+
+生成资产时：
+
+- coherent direct prose 优于 keyword stacking；
+- 只写真正决定画面的 anchors；
+- 已经由参考图清楚提供的服装 / 五官不反复扩写；
+- 不为了显得专业堆“cinematic / masterpiece / premium / dreamy”等装饰性词；
+- 关键控制越集中，越容易验收失败原因。
+
+目标不是固定字数，而是**最短够用、控制清楚**。
+
+## 场景 / 分镜资产：先锁 Camera Anchor
+
+场景图最容易失败的是摄影机位置和构图。
+
+优先用简单物理语言：
+
+- 高机位 / 平视 / 低机位；
+- 三分之四角度；
+- 摄影机位于房间高处；
+- 斜向下看；
+- 正面 / 侧面 / 侧背；
+- 中景 / 中远景 / 全景；
+- 主体位于 screen-left / right；
+- 主要地标在哪一层空间。
+
+简单可执行的机位描述优先于抽象镜头标签。
+
+如果是同一场景换反打 / 新视角，不只写“换角度”。需要时明确新机位下：
+
+- 主要物体左右关系；
+- 门窗 / 地标的新位置；
+- 原本摄影机后方的空间是否进入画面；
+- 哪些结构必须保持同一世界。
+
+## 材质与灯光：写可见结果
+
+场景 / 道具资产需要材质时，优先写具体表面：
+
+- matte / glossy / worn / oxidized；
+- concrete / copper / wood / fabric / glass；
+- 纹理是否粗糙、老化、湿润、布满灰尘等。
+
+灯光优先写：
+
+- 主光从哪里来；
+- 光是硬还是软；
+- 明暗落差；
+- 哪些区域保持暗；
+- 哪些材质需要出现高光。
+
+不靠“dramatic cinematic lighting”一词代替实际光线结构。
 
 ## 局部展示镜头：主动提醒是否补局部特写资产
 
@@ -34,25 +117,75 @@ description: Plan and generate reference images that will later be used as AI vi
 
 ### 对使用者的提醒方式
 
-可以直接说明：
-
 ```text
 后面的镜头会重点展示 [部位 / 细节]。
 目前角色资产里这个位置 [太小 / 被遮挡 / 角度不足 / 设计不清楚]。
 是否需要先补一张 [对应部位] 的定向特写资产，后续视频生成时作为参考？
 ```
 
-### 示例
+## 已有资产编辑：Minimal CHANGE + PRESERVE
 
-- 后续有手部施法极近特写，角色右手食指有固定戒指 → 检查是否需要补手部 / 戒指特写资产。
-- 后续有耳部近景，圆形玉石耳环是身份关键细节 → 若全身图里的耳环太小，提醒是否补耳部特写。
-- 后续主要拍背影，发型后部与后背服装结构很重要 → 若正面资产无法提供，提醒是否补背面资产。
-- 后续有脚踩地面或鞋部特写 → 若现有角色图无法看清鞋型与裤脚连接，提醒是否补脚部资产。
+如果不是重新生成，而是修改已有资产，优先一次只改一个主要变量。
+
+建议结构：
+
+```text
+【修改目标】
+只修改：...
+
+【保持不变】
+- 角色身份 / 五官
+- 发型 / 服装
+- 人物位置
+- 摄影机角度
+- 场景主要结构
+- 已有阴影 / 光线方向
+- 色彩与整体风格
+
+除此之外保持一致。
+```
+
+当用户反馈“改太多了”，优先缩小 CHANGE、加强 PRESERVE，而不是继续增加更多新描述。
+
+## Positive control first
+
+生成新资产时优先说明想要的状态。
+
+例如需要空场景，直接写：
+
+```text
+空旷、无人使用的维护走廊，通道中没有其他活动主体。
+```
+
+而不是用大量负面词反复提醒“不准有人”。
+
+只有明确的高风险失败才补局部禁止项。
+
+## 输出
+
+根据任务按需输出：
+
+```text
+【资产用途】
+【参考图职责】
+【必须看清 / 锁定的视觉事实】
+【Camera Anchor / 构图】（按需）
+【材质 / 灯光】（按需）
+【生成提示词】
+【验收重点】
+```
+
+如果是编辑，则改为：
+
+```text
+【修改目标】
+【CHANGE】
+【PRESERVE】
+【验收重点】
+```
 
 ## 边界
 
-这条规则的目的，是让生图 Skill 能根据**后续视频镜头需求**提前发现资产缺口。
+本 Skill 只负责为视频准备视觉资产，不负责完整视频秒数、运镜时间轴、表演节奏、音频与剪辑出口。
 
-它不是在视频提示词里写“必须有手部参考图”，也不是要求每个角色预先生成所有身体部位。只有当后续镜头真的会重点展示，而且现有资产不足时，才提醒是否补充。
-
-后续新增其他生图规则时，继续遵守项目的 Skill 治理原则：AI 自己推导的新规则先交给创作者过目，得到明确认可后再写入本文件。
+后续新增其他生图规则时，继续遵守项目的 Skill 治理原则：用户提供并确认的实操方法可以记录；AI 自己推导出的新规则先交给创作者过目，得到明确认可后再写入正式方法。
