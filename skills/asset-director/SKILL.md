@@ -1,6 +1,6 @@
 ---
 name: asset-director
-description: Decide the minimum reference assets needed for an AI video shot and assign each asset a precise responsibility. Use when choosing between scene images, character references, pose silhouettes, face references, storyboards, end frames, next-shot references, special-effect reference assets, or when deciding whether complex shots need a dedicated Astra asset-preparation pass.
+description: Decide the minimum reference assets needed for an AI video shot and assign each asset a precise responsibility. Use when choosing between scene images, character references, pose silhouettes, face references, storyboards, end frames, next-shot references, special-effect reference assets, or when deciding whether complex shots need Astra asset preparation versus text-only spatial blocking.
 ---
 
 # Asset Director
@@ -13,6 +13,12 @@ description: Decide the minimum reference assets needed for an AI video shot and
 
 由它生成可直接交给 Astra 的专业资产任务书。
 
+如果当前平台**无法直接使用白膜 / previs 视频或对应三维预演资产**，不要因此卡住生产流程。改由 `../shot-designer/SKILL.md` 启用文字版 spatial blocking，把第一帧、人物位置、身体朝向、视线、移动路径、摄影机一侧与地标关系写清楚。
+
+如果需要实际生成 / 编辑一张角色、场景、姿态、局部、道具或关键帧资产，转交：
+
+`../image-asset-generator/SKILL.md`
+
 ## 判断顺序
 
 1. 先看场景图已经提供什么：空间、人物初始存在、位置、姿态、构图关系、光线或关键物件。
@@ -20,6 +26,7 @@ description: Decide the minimum reference assets needed for an AI video shot and
 3. 只有场景图无法稳定承担的信息，才补角色或局部资产。
 4. 精确动接优先使用上一镜结尾帧；复杂多镜调度才强制考虑故事板。
 5. 如果真正缺的是“空间 / 构图 / 大姿势 / 动作过程的可视化骨架”，不要继续堆角色身份图，改判断是否需要 Astra 资产准备。
+6. 如果理论上适合白膜，但目标平台根本无法读取这种资产，立即切换为文字 blocking，不把不可用资产当作必须前置条件。
 
 ## 角色资产原则
 
@@ -29,6 +36,7 @@ description: Decide the minimum reference assets needed for an AI video shot and
 - 后续才露出正脸时，再补正脸、头部或对应角度资产。
 - 后续才入画的新角色，如果场景图没有身份锚点，应补单独角色图。
 - 不要为了“完整”而要求本镜根本看不到的多视图。
+- 平台 / 参考系统已经能提供身份时，不要靠长篇角色描述与参考图互相竞争。
 
 ## 复杂动作 / 空间资产判断
 
@@ -47,7 +55,15 @@ description: Decide the minimum reference assets needed for an AI video shot and
 - Blender 白膜 / previs：锁空间、机位、角色位置和大姿势；
 - 动作演员 / Mocap / 动作参考：锁身体具体怎么动。
 
-本 Skill 只判断需要什么，不在这里展开 Astra 的制作指令。
+### 平台不支持白膜时
+
+如果白膜无法作为最终视频生成输入：
+
+- 可以继续把白膜当导演 / 分镜设计辅助；
+- 但不要假设视频模型“看到了白膜”；
+- 真正提交给视频模型的 Prompt 必须用 `shot-designer` 把关键 blocking 重新文字化；
+- 如果平台支持静态图但不支持视频，可优先输出白膜关键帧 / 线稿分镜图作为静态参考；
+- 如果连静态空间参考也无法使用，则完全依赖文字 Location Map + First Frame + Spatial Blocking。
 
 ## 技能特效资产判断
 
@@ -107,7 +123,16 @@ description: Decide the minimum reference assets needed for an AI video shot and
 【转交 Astra 资产准备】
 - 需要的载体：...
 - 原因：...
+- 当前平台能否直接使用该资产：...
 - 下一步：读取 ../astra-video-asset-prep/SKILL.md 生成完整执行提示词。
+```
+
+若白膜 / previs 无法被最终平台使用，则增加：
+
+```text
+【文字 Blocking 回退】
+- 必须文字化的空间信息：...
+- 下一步：读取 ../shot-designer/SKILL.md。
 ```
 
 素材判断必须服务本镜，不追求资产数量最大化。
