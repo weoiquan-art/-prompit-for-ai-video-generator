@@ -1,11 +1,22 @@
 ---
 name: qversion-social-short-video
-description: Generate short-form social video prompts for Q-version or anthropomorphic characters, especially around 8–15 seconds. Preserve the validated Claude methodology as the baseline while layering current production findings: fixed character/style blocks, variable scene/action blocks, explicit state transitions, behavior-based character differentiation, motivated POV movement, minimum necessary spatial anchors, prop continuity, staggered/spatial audio, optional reversal or healing structures, and task-specific failure guards.
+description: Generate short-form social video prompts for Q-version or anthropomorphic characters, defaulting to 15 seconds unless the user explicitly requests another duration. Preserve the validated Claude methodology as the baseline while layering current production findings: fixed character/style blocks, variable scene/action blocks, explicit state transitions, behavior-based character differentiation, motivated POV movement, minimum necessary spatial anchors, prop continuity, staggered/spatial audio, optional reversal or healing structures, and task-specific failure guards.
 ---
 
 # Q版社交短视频导演 Skill
 
 这是日常 Q 版 / 拟人化角色短视频的专用分支，优先服务 9:16、约 8–15 秒、动作与情绪驱动的社交媒体内容。
+
+## 默认时长：15 秒（硬规则）
+
+当用户要求生成 Q版社交短视频，但没有明确指定时长时，默认生成 **15 秒**。
+
+- 只有用户明确提出其他时长，例如 8 秒、10 秒或 30 秒，才改变视频时长；
+- 不得因为剧情简单、只有一个笑点、成本、节奏判断或模型偏好，自行缩短或延长；
+- 用户只提供题材、画面或动作而未提及时长时，仍按 15 秒编排；
+- 若目标平台的硬性限制无法生成 15 秒，应先向用户说明限制并确认替代时长，不得静默改成其他秒数；
+- 时长确定后，时间轴各段之和必须准确等于该时长。
+
 
 ## 证据基线：不得覆盖 Claude 原经验
 
