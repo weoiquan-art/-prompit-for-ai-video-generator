@@ -1,7 +1,8 @@
 interface:
-  display_name: JIN Seedance Video Director
-  short_description: 以 Seedance 真实合同为地基，组织参考、事件切片与连续承接
-  default_prompt: Use $jin-video-director-flow to choose the correct Seedance runtime, map every reference to one role, and produce an event-slice video prompt with verifiable continuity.
+  display_name: JIN Video Director Flow
+  short_description: 用流程化镜头卡构建可执行、可检查、可衔接的导演提示词
+  default_prompt: Use $jin-video-director-flow to turn my idea and references into
+    a process-first, shot-by-shot video prompt.
   icon_small: assets/icon.svg
   icon_large: assets/icon.svg
 policy:
@@ -11,5 +12,3 @@ policy:
   - api
   - atlas
   allow_implicit_invocation: true
-
-

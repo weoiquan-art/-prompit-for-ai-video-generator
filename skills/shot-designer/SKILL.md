@@ -1,6 +1,6 @@
 ---
 name: shot-designer
-description: "Design the visual execution of one AI video shot: unique task, first-frame occupancy, framing, camera position and movement, spatial blocking, optics outcome, start/process/end states, focus changes, invariants, and cut exit. Use after the core idea and required assets are known, especially when no usable previs/white-model asset can be passed into the video model."
+description: Design the visual execution of one AI video shot: unique task, first-frame occupancy, framing, camera position and movement, spatial blocking, optics outcome, start/process/end states, focus changes, invariants, and cut exit. Use after the core idea and required assets are known, especially when no usable previs/white-model asset can be passed into the video model.
 ---
 
 # Shot Designer
