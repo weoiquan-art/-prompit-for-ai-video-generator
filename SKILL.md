@@ -1,6 +1,6 @@
 ---
 name: jin-video-director-flow
-description: Orchestrate modular AI video prompt skills to turn rough ideas, image references, video references, storyboards, emotional beats, or short-form Q-version social content into duration-aware shot prompts. Route work through specialized skills instead of solving every responsibility inside one monolithic prompt.
+description: Orchestrate modular AI video prompt and reference-preparation skills to turn rough ideas, images, videos, storyboards, emotional beats, or Q-version social concepts into duration-aware shot prompts, including skeleton-bound temporal-depth motion references when users request black-gray depth control video or exact motion transfer. Route work through specialized skills.
 ---
 
 # JIN Video Director Flow
@@ -12,6 +12,7 @@ description: Orchestrate modular AI video prompt skills to turn rough ideas, ima
 根据任务按需读取：
 
 - **Q版 / 拟人化角色、9:16 社交媒体、约 8–15 秒、动作与情绪驱动短视频** → `skills/qversion-social-short-video/SKILL.md`
+- **普通人物参考视频转黑灰骨骼深度动作控制视频，或严格继承动作／节奏／空间／运镜并重建外观** → `skills/skeleton-depth-motion-transfer/SKILL.md`
 - 粗糙自然语言、零散画面、情绪碎片 → `skills/idea-parser/SKILL.md`
 - 判断场景图、角色图、坐姿轮廓、面部图、故事板、结尾帧等素材是否需要 → `skills/asset-director/SKILL.md`
 - **当镜头需要 Astra 准备 16:9 分镜、Blender 白膜 / previs、角色 blocking、动作演员 / Mocap 学习资产、VFX 等可视化载体时** → `skills/astra-video-asset-prep/SKILL.md`
@@ -24,6 +25,14 @@ description: Orchestrate modular AI video prompt skills to turn rough ideas, ima
 故事板专项仍读取 `references/storyboard-workflow.md`；模板职责读取 `references/annotated-template.md`；正式输出可使用 `assets/clean-template.md`。
 
 只读取当前任务需要的模块，不机械全部展开。
+
+## 骨骼深度动作分支优先级
+
+当用户明确要求把上传视频转换成“深度视频”“黑灰动作参考”“骨骼动作参考”或“骨骼绑定深度控制视频”时，优先进入 `skeleton-depth-motion-transfer`。这是实际的视频参考处理任务，不是普通提示词写作：
+
+- 用户要控制视频文件 → 该分支必须先检查处理能力，实际转换并质检；不得用普通灰度滤镜或文字说明冒充成品；
+- 用户要让新角色／新场景严格复现参考动作 → 先由该分支分配骨骼、时序、深度与运镜职责并生成固定迁移模板，再按需叠加其他模块设计新外观；
+- 用户只是在分析参考视频、提取创意或撰写普通视频提示词，没有要求转换或严格动作迁移 → 不启用该分支。
 
 ## Q版日常生产分支优先级
 
@@ -56,6 +65,8 @@ description: Orchestrate modular AI video prompt skills to turn rough ideas, ima
 ## 执行流程
 
 ### 1. 先判断输入成熟度与任务类型
+
+先判断是否属于“普通视频转黑灰骨骼深度控制视频”或“严格按参考视频动作迁移”。是的话先进入 `skeleton-depth-motion-transfer`，不要让普通镜头模块替代实际视频处理。
 
 先判断是不是 Q版社交短视频专用任务。是的话优先使用对应分支。
 
