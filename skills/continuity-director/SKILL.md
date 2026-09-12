@@ -7,6 +7,12 @@ description: Design shot-to-shot continuity and match transitions for AI video. 
 
 负责镜头之间“状态怎样真实继承”，尤其是动接、遮挡接、视线接、连续运镜与多镜头内部连续性。
 
+## Seedance 跨片硬接口
+
+当目标为 Seedance 2.0 或 2.5 时，上一片的 `[结束状态·供下一片承接]` 必须逐字复制为下一片的 `[起始状态]`，并把上一片实际导出的末帧设为下一片第一优先承接参考。两项缺一不可。
+
+这里的逐字复制只针对边界状态段，不复制整份旧 Prompt；下文 Context isolation 继续用于剔除已离场人物、已结束道具、无关旧参考和制作笔记。
+
 当前方法吸收 `../practical-case-skills/cinedance-v4/SKILL.md` 的 multi-shot continuity 与 `../practical-case-skills/acting-system/SKILL.md` 的 state inertia 实操经验。
 
 ## 入口检查

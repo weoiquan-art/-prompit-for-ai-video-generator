@@ -1,11 +1,22 @@
 ---
 name: qversion-social-short-video
-description: Generate short-form social video prompts for Q-version or anthropomorphic characters, especially around 8–15 seconds. Preserve the validated Claude methodology as the baseline while layering current production findings: fixed character/style blocks, variable scene/action blocks, explicit state transitions, behavior-based character differentiation, motivated POV movement, minimum necessary spatial anchors, prop continuity, staggered/spatial audio, optional reversal or healing structures, and task-specific failure guards.
+description: "Generate short-form social video prompts for Q-version or anthropomorphic characters, especially around 8–15 seconds. Preserve the validated Claude methodology as the baseline while layering current production findings: fixed character/style blocks, variable scene/action blocks, explicit state transitions, behavior-based character differentiation, motivated POV movement, minimum necessary spatial anchors, prop continuity, staggered/spatial audio, optional reversal or healing structures, and task-specific failure guards."
 ---
 
 # Q版社交短视频导演 Skill
 
 这是日常 Q 版 / 拟人化角色短视频的专用分支，优先服务 9:16、约 8–15 秒、动作与情绪驱动的社交媒体内容。
+
+## Seedance 运行时覆盖规则
+
+若上层已经选择 Seedance 2.0 或 2.5，本分支只提供内容结构、角色固定层、行为差异、POV 动机、道具连续性与声音经验：
+
+- 运行参数、参考容量、method 与省略字段必须服从对应 Seedance 版本模块；
+- 本文件的时间轴可用于作者层节奏规划，但最终交付必须编译为事件切片的起始状态、唯一主要变化与结束状态，不保留时间码式状态模板；
+- 相关参考按 Reference Role Map 逐项声明唯一职责，不受示例数量限制；
+- 多切片同时使用末态文字逐字承接与上一片真实末帧承接。
+
+未指定 Seedance 时，继续使用本分支原有的日常生成格式。
 
 ## 证据基线：不得覆盖 Claude 原经验
 
