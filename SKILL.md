@@ -35,6 +35,10 @@ description: Orchestrate modular AI video prompt and reference-preparation skill
 
 只读取当前任务需要的模块，不机械全部展开。
 
+## 可选结构图：Archify
+
+用户明确要查看视频生产步骤、Story／Asset／Video 交接或镜头间技术依赖时，调用已安装的 [`$archify`](https://github.com/tt-a1i/archify) 制作 workflow、sequence 或 lifecycle 图。只使用已确认的故事和生产事实；图是沟通用的结构说明，不是分镜、Blender 白膜、成片或最终视频 Prompt。普通视频生成和 Seedance 提示词任务不因安装了 Archify 而增加画图步骤；本段也不修改任何 Seedance 专用规则。
+
 ## 骨骼深度动作分支优先级
 
 当用户明确要求把上传视频转换成“深度视频”“黑灰动作参考”“骨骼动作参考”或“骨骼绑定深度控制视频”时，优先进入 `skeleton-depth-motion-transfer`。这是实际的视频参考处理任务，不是普通提示词写作：
