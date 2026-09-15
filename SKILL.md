@@ -1,6 +1,6 @@
 ---
 name: jin-video-director-flow
-description: Orchestrate modular AI video prompt and reference-preparation skills to turn rough ideas, images, videos, storyboards, emotional beats, or Q-version social concepts into duration-aware shot prompts, including skeleton-bound temporal-depth motion references when users request black-gray depth control video or exact motion transfer. Route work through specialized skills.
+description: Orchestrate modular AI video direction from rough ideas, images, videos, storyboards, dialogue, emotional beats, or Q-version concepts into scene plans, shared spatial anchors, duration-aware shot briefs, and final prompts, including skeleton-bound temporal-depth motion references when requested. Route work through specialized skills.
 ---
 
 # JIN Video Director Flow
@@ -23,6 +23,7 @@ description: Orchestrate modular AI video prompt and reference-preparation skill
 - **Q版 / 拟人化角色、9:16 社交媒体、约 8–15 秒、动作与情绪驱动短视频** → `skills/qversion-social-short-video/SKILL.md`
 - **普通人物参考视频转黑灰骨骼深度动作控制视频，或严格继承动作／节奏／空间／运镜并重建外观** → `skills/skeleton-depth-motion-transfer/SKILL.md`
 - 粗糙自然语言、零散画面、情绪碎片 → `skills/idea-parser/SKILL.md`
+- **一个想法需要拆成数个几秒／几十秒镜头、同场多镜、对白场面或完整短场戏** → `skills/scene-sequence-director/SKILL.md`
 - 判断场景图、角色图、坐姿轮廓、面部图、故事板、结尾帧等素材是否需要 → `skills/asset-director/SKILL.md`
 - **当镜头需要 Astra 准备 16:9 分镜、Blender 白膜 / previs、角色 blocking、动作演员 / Mocap 学习资产、VFX 等可视化载体时** → `skills/astra-video-asset-prep/SKILL.md`
 - 设计本镜唯一任务、机位、运镜、空间、起幅／过程／落幅 → `skills/shot-designer/SKILL.md`
@@ -31,7 +32,7 @@ description: Orchestrate modular AI video prompt and reference-preparation skill
 - 预测重复人物、参考污染、动作串台、空间错误等生成崩溃 → `skills/failure-diagnostics/SKILL.md`
 - 从“原始提示词 + 生成结果”中学习并决定是否升级规则 → `skills/sample-learning/SKILL.md`
 
-故事板专项仍读取 `references/storyboard-workflow.md`；模板职责读取 `references/annotated-template.md`；正式输出可使用 `assets/clean-template.md`。
+故事板专项仍读取 `references/storyboard-workflow.md`；叙事转可见事实与时长示例读取 `references/visible-facts-and-duration-examples.md`；模板职责读取 `references/annotated-template.md`；正式输出可使用 `assets/clean-template.md`，整场戏策划可使用 `assets/scene-sequence-plan-template.md`。
 
 只读取当前任务需要的模块，不机械全部展开。
 
@@ -55,6 +56,7 @@ description: Orchestrate modular AI video prompt and reference-preparation skill
 
 只有当该 Q版任务同时出现以下需求时，再叠加其他模块：
 
+- 一条 Q版内容确实需要跨多个镜头／生成片段搭成完整场戏 → 叠加 `scene-sequence-director`；
 - 缺少本镜所需角色姿态、面部、场景或关键帧资产 → 叠加 `asset-director`；
 - **复杂空间、大姿势、高难度身体动作或动作过程不适合只靠文字猜测，需要先让 Astra 准备分镜 / Blender 白膜 / 动作学习载体** → 叠加 `astra-video-asset-prep`；
 - 单镜头机位、空间揭示或摄影机运动非常复杂 → 叠加 `shot-designer`；
@@ -86,6 +88,8 @@ description: Orchestrate modular AI video prompt and reference-preparation skill
 如果用户已经给出明确镜头结构，直接进入对应模块。
 
 如果只是粗糙想法，先用 `idea-parser` 得到最小 director brief。不要强迫用户填写完整模板，只询问会改变镜头数量、角色身份、核心动作、衔接方向或结尾的缺失信息。
+
+若这个 brief 包含多个故事节拍、同场多镜、对白关系、跨片段连续性，或需要把几秒／几十秒镜头组装成完整故事，再用 `scene-sequence-director` 先确定整场戏的共享锚点、观众信息变化、镜头职能、剪辑理由与制作时长估算，然后才逐镜进入 `shot-designer`。
 
 如果信息不足但可以合理完成，做最小假设继续。
 
@@ -127,13 +131,18 @@ description: Orchestrate modular AI video prompt and reference-preparation skill
 
 用户明确说明真实资产与界面预览不一致时，以用户说明为准，不从错配预览反推生成输入。
 
-### 3. 根据时长决定镜头数
+### 3. 根据故事节拍规划镜头与制作时长
 
-每个候选镜头必须拥有清楚的起点、过程和结果，并只有一个主要变化。
+每个候选镜头必须拥有清楚的起点、过程和结果，并只有一个主要变化。一个完整场戏先用 `scene-sequence-director` 判断哪些信息应留在同一镜，哪些变化需要切镜；再由 `shot-designer` 逐镜执行。
 
-若时长不足，减少镜头，不压缩全部流程。不得让后续镜头的关键动作提前串入当前镜头。
+若时长不足，优先减少事件或镜头，不把所有动作压成不可读的结果词。不得让后续镜头的关键动作提前串入当前镜头。
 
-交付前核对总时长与各镜时长之和。故事板中的可读时长、镜头标签若保留，必须与最终文字一致。
+严格区分两层时间：
+
+- **制作策划秒数**：给导演、生成与剪辑预估使用。可以逐镜列出约几秒，并核对总和是否覆盖目标成片长度。
+- **模型提示词时间控制**：只是可选执行手段，不等于策划秒数必须原样写进 Prompt。动作简单、关键点必须落在特定位置且目标模型擅长时间控制时，可以使用连续时间区间、时间点或相对时间；动作复杂、因果链长或自然节奏更重要时，优先用“镜头1／镜头2／镜头3”和清楚的先后状态，不强塞精确时间戳。
+
+30 秒单次生成是一种可选生成单元，不是默认生产单位。只有同一地点、同一时间、同一因果链持续推进，并且连续生成的收益大于整段失败的重生成成本时才优先考虑；需要精确揭示、多个独立近景、换地点、复杂动作或局部重做时，优先拆成数个几秒／几十秒片段再剪辑。
 
 Q版 15 秒分支可使用 5–7 个动作／状态阶段，但这些阶段不等于强制 5–7 次剪辑；具体以其专用 Skill 的原始经验为准。
 
@@ -158,7 +167,7 @@ Q版 15 秒分支可使用 5–7 个动作／状态阶段，但这些阶段不�
 
 ### 5. 设计镜头
 
-使用 `shot-designer` 完成本镜的视觉执行。
+多镜头场戏先继承 `scene-sequence-director` 已确认的整场共享锚点、镜头职能、入口状态与出口状态，再使用 `shot-designer` 完成本镜的视觉执行。
 
 重点包括：
 

@@ -1,6 +1,6 @@
 ---
 name: shot-designer
-description: Design the visual execution of one AI video shot: unique task, first-frame occupancy, framing, camera position and movement, spatial blocking, optics outcome, start/process/end states, focus changes, invariants, and cut exit. Use after the core idea and required assets are known, especially when no usable previs/white-model asset can be passed into the video model.
+description: Design the visible execution of one AI video shot: translate narrative meaning into observable facts, inherit shared scene anchors, then define the shot task, first frame, framing, camera, spatial blocking, start/process/end states, invariants, and cut exit. Use after the story beat and required assets are known.
 ---
 
 # Shot Designer
@@ -31,6 +31,29 @@ description: Design the visual execution of one AI video shot: unique task, firs
 - 焦点变化与镜头内不变量（按需）；
 - 剪辑出口；
 - 本镜不得提前发生的后续关键动作（按需）。
+
+## 硬规则：强制写成当前画面可见的事实
+
+叙事结论、情绪、意图、关系和力量不能直接代替画面。先把它们翻译成当前景别能看见、能按先后发生的外部证据：
+
+```text
+故事事实
+→ 外部刺激
+→ 第一个可见泄漏
+→ 身体接管
+→ 环境／道具证明同一事件
+→ 可继承的稳定结果
+```
+
+只写当前机位真正能看见的节点。背面机位看不见眼神就改写头肩、呼吸、手部、脊背与重心；接近垂直的顶拍看不清眼睛回避，就降低为能同时读到脸、手臂和脚下支撑的高角度。
+
+例如“她害怕但站稳”不能只写情绪词；应写触发物、眼睛或头部先回避、前臂遮挡、脚步加宽、膝髋降低、躯干迎着冲击稳定，以及头发、衣摆、尘土朝同一方向运动。完整示例读取 `../../references/visible-facts-and-duration-examples.md`。
+
+## 继承整场戏共享锚点
+
+若上游 `scene-sequence-director` 已建立场景锚点，本镜直接继承并只写变化量：固定地标、人物起始标记与移动路径、摄影机所在一侧／轴线、主光方向、风尘或其他外力方向。不要每镜重新发明地理。
+
+关系镜头、事件镜头、反应镜头、细节镜头是叙事职能，不等于必须采用某种运镜。固定机位若最清楚，就保持固定；摄影机只在跟随动作、视线、遮挡、空间揭示或冲击反馈时移动。
 
 ## 两种工作模式
 
@@ -63,7 +86,7 @@ description: Design the visual execution of one AI video shot: unique task, firs
 
 ## Location Map：先把场景变成可执行空间
 
-空间复杂时，不要先写“电影感构图”。先记录：
+空间复杂时，先读取上游已确认的共享锚点；若没有，再建立本镜 Location Map。不要先写抽象风格判断，先记录：
 
 - 摄影机在哪里；
 - 摄影机朝哪个方向；
@@ -198,6 +221,9 @@ description: Design the visual execution of one AI video shot: unique task, firs
 
 ```text
 【本镜唯一任务】
+
+【共享锚点继承】（多镜头场戏）
+固定地标／人物起点与路径／摄影机一侧／光线与外力方向：
 
 【第一可见帧】
 
