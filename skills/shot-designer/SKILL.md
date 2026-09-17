@@ -1,6 +1,10 @@
 ---
 name: shot-designer
-description: Design the visible execution of one AI video shot: translate narrative meaning into observable facts, inherit shared scene anchors, then define the shot task, first frame, framing, camera, spatial blocking, start/process/end states, invariants, and cut exit. Use after the story beat and required assets are known.
+description: >-
+  Design the visible execution of one AI video shot: translate narrative meaning
+  into observable facts, inherit shared scene anchors, then define the shot task,
+  first frame, framing, camera, spatial blocking, start/process/end states,
+  invariants, and cut exit. Use after the story beat and required assets are known.
 ---
 
 # Shot Designer
