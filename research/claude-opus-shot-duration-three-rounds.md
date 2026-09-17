@@ -14,8 +14,8 @@
 4. 整场戏编排 Skill：https://github.com/weoiquan-art/-prompit-for-ai-video-generator/blob/main/skills/scene-sequence-director/SKILL.md
 5. 单镜设计 Skill：https://github.com/weoiquan-art/-prompit-for-ai-video-generator/blob/main/skills/shot-designer/SKILL.md
 6. 可见事实与 Sera 城门示例：https://github.com/weoiquan-art/-prompit-for-ai-video-generator/blob/main/references/visible-facts-and-duration-examples.md
-7. Q版 Claude 原始方法论（只学习“怎样保存原始观点”，不要把 Q版规则复制到成女或通用导演）：https://github.com/weoiquan-art/-prompit-for-ai-video-generator/blob/main/skills/qversion-social-short-video/references/claude-original-methodology.md
-8. 成女 Sera 支线：https://github.com/weoiquan-art/-prompit-for-ai-video-generator/blob/main/skills/qversion-social-short-video/branches/sera-adult-video/SKILL.md
+7. Q版 Claude 原始方法论（只学习“怎样保存原始观点”，不要把 Q版规则复制到成女或通用导演）：https://github.com/weoiquan-art/chibi-/blob/main/references/claude-original-methodology.md
+8. 成女 Sera 故事与世界观：https://github.com/weoiquan-art/sera-universal/blob/main/SKILL.md（视频执行改由通用 Video Director 接收 Story Package）
 
 若任何链接无法访问，请明确说出具体哪一项没有读到，不要假装已读。
 
@@ -64,3 +64,4 @@
 11. 你与现有方法仍然不同意或没有把握的地方。
 
 保持你自己的判断，不为了迎合现有 Skill 而同意。所有修改建议只写成讨论清单，不直接改文件，也不要把建议冒充已验证规则。末尾给出一段可直接复制回本项目继续讨论的 200–400 字摘要。
+
