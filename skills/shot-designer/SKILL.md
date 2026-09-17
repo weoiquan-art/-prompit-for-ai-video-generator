@@ -101,6 +101,8 @@ description: Design the visible execution of one AI video shot: translate narrat
 
 场景参考图可以锁地理、材质、氛围与地标，但**不自动继承它原本的机位和构图**，除非用户明确要求。
 
+现行流程中的场景资产是无人干净底图。人物站位与组合关系由本 Skill 的 blocking 负责；若需要可视化载体，应使用故事板、镜头关键帧或白膜／previs，而不是在场景资产中预放正式角色。
+
 ## 第一帧占位
 
 第一帧是独立控制对象。

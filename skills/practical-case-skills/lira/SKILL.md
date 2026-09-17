@@ -181,9 +181,8 @@ ONLY CHANGE: [restate the one change]. 100% identical otherwise.
 
 LIRA 最适合强化 JIN 的：
 
-- `image-asset-generator`；
-- `asset-director`；
-- 生图 Skill / GPT Image 上游资产生产；
+- `asset-director` 的最小资产判断与交接；
+- 外部 `$jin-gpt-image-director` 的上游资产生产；
 - Prompt 密度控制；
 - 参考资产职责；
 - 局部编辑与场景换角度。

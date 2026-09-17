@@ -17,7 +17,7 @@ description: >-
 
 - 用户原话与获批的 Story Package 决定“发生什么、为什么发生、人物作出什么选择”。
 - 本 Skill 决定这些事实怎样被摄影机看见、怎样拆成生成单元，以及怎样写成目标模型可执行的提示词。
-- Sera 项目先从其世界观 Skill 接收获批 Story Package；不要把 Sera Canon 复制进这里。
+- Sera 项目先由 `$sera-universal` 提供 Canon Brief，再由 `$jin-story-development` 形成获批 Story Package；本 Skill 只接收 Story Package，不复制 Sera Canon 或自行续写剧情。
 - 菲比、糯糯与 Q版 Sera 的固定三人内容使用独立 Q版 Skill，不在这里重复其角色、声音和 15 秒经验。
 - 骨骼深度控制视频与严格动作迁移使用独立 motion-transfer Skill，不进入普通提示词流程。
 
@@ -32,9 +32,8 @@ description: >-
 | 单镜的机位、空间揭示、blocking 或运镜复杂 | skills/shot-designer/SKILL.md |
 | 情绪与人物关系需要转成细微可见表演 | skills/performance-director/SKILL.md |
 | 必须继承上一段的运动、构图、视线或环境状态 | skills/continuity-director/SKILL.md |
-| 用户要判断真正缺少哪些视觉资产 | skills/asset-director/SKILL.md |
-| 复杂空间、大姿势或动作过程需要分镜／previs／Mocap 载体 | skills/astra-video-asset-prep/SKILL.md |
-| 用户明确要生成或定向修改视觉资产 | skills/image-asset-generator/SKILL.md |
+| 用户要判断真正缺少哪些视觉资产，或形成资产交接单 | skills/asset-director/SKILL.md |
+| 目标模型为 Seedance 2.0／2.5，或需要选择版本与提示词密度 | references/seedance-version-routing.md |
 | 已有成片发生明确故障，需要定位原因 | skills/failure-diagnostics/SKILL.md |
 | 用户提供原 Prompt、资产与成片，要求提炼经验 | skills/sample-learning/SKILL.md |
 
@@ -44,6 +43,7 @@ description: >-
 - 用户提供或要求故事板时，读 references/storyboard-workflow.md。
 - 用户要求理解模板字段时，读 references/annotated-template.md；只要成品提示词时不读。
 - 原始案例、样本视频、研究记录与 practical-case Skills 只在样本学习时读取，不进入普通生成上下文。
+- 确认需要实际生成／编辑角色、空场景、道具、VFX、分镜或白膜资产时，转交 `$jin-gpt-image-director`；本仓只提供需求与职责，不展开生图或 Astra 制作方法。
 
 一次只选能改变当前决定的最小模块集合。某个模块已经足够完成任务时，不因为其他模块存在就继续加载。
 
@@ -128,6 +128,13 @@ description: >-
 
 用户已限定资产范围时，不自行扩大清单。若问题是空间、构图或复杂身体过程，优先考虑分镜／previs／动作参考，而不是继续堆角色图。
 
+现行资产分类：
+
+- **场景资产／scene plate** 是无命名角色、无主角的干净环境底图，只锁地点结构、材质、地标与基础光线。
+- **角色资产** 独立锁身份、比例、服装与必要角度。
+- 若需要展示人物站位、朝向或人与场景的组合关系，使用**故事板、镜头关键帧或白膜／previs**；它们可以包含代理人形或角色占位，但不称为场景资产。
+- 人物的 screen-left／screen-right、前中后景、距离、朝向、视线与移动路径仍由视频导演层负责写清。
+
 ## 轻量执行流程
 
 1. 确认用户现在要的是讨论、制作方案、最终提示词还是成片诊断。
@@ -171,6 +178,15 @@ description: >-
 - 把策划秒数等同于模型必须严格执行的时间戳；
 - 一次性生成 30 秒，或为了时长强行增加新剧情。
 
-## 方法更新
+## Seedance Skill 修改治理（硬规则）
+
+以下治理适用于 Seedance 2.0／2.5 的入口规则、版本分流、模板、参数和模型专属方法：
+
+1. “读取、审查、复盘、学习、比较、同步经验、给结论”只授权分析，不授权修改 Skill。
+2. 修改前必须先列出：涉及文件、准确修改内容、修改原因与预期影响。
+3. 然后固定询问：**“是否按上述方案更改 Seedance Skill？”**
+4. 只有 JIN 明确同意后，才能修改获批范围；新增修改范围必须重新说明并询问。
+5. JIN 已经对一份明确方案作出同意时，不重复询问同一范围。
+6. 已通过的提示词或成片是冻结基线；除非 JIN 明确要求，不因新理论或格式偏好擅自重写。
 
 新样本可以提出候选改法，但未经 JIN 明确确认，不自动修改 Skill。真实结果优先更新对应独立模块；只有跨任务都成立的原则才考虑进入本入口。
