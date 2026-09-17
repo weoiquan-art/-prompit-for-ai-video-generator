@@ -41,7 +41,7 @@ description: Decide the minimum visual assets an AI video shot actually needs, a
 
 ### 场景资产／Scene Plate
 
-- 必须是无命名角色、无主角的干净环境底图。
+- 必须是无人、无任何角色的干净环境底图；主角、配角、群众都不出现。
 - 只锁地点结构、内外关系、地标、材质、基础光线与必要环境状态。
 - 不承载人物身份、站位、姿态或表演。
 
