@@ -5,8 +5,8 @@ description: >-
   into production-aware AI video plans and copy-ready prompts. Use for ordinary
   single shots, multi-shot scene sequencing, camera and blocking, visible
   performance, continuity, asset handoff, or generation diagnosis. Q-version
-  trio videos, Sera canon development, and skeleton-depth motion transfer use
-  their separate skills.
+  social videos, Sera canon/world questions, and skeleton-depth motion transfer
+  are routed to their separate skills or repositories.
 ---
 
 # JIN Video Director Flow
@@ -17,9 +17,9 @@ description: >-
 
 - 用户原话与获批的 Story Package 决定“发生什么、为什么发生、人物作出什么选择”。
 - 本 Skill 决定这些事实怎样被摄影机看见、怎样拆成生成单元，以及怎样写成目标模型可执行的提示词。
-- Sera 项目先由 `$sera-universal` 提供 Canon Brief，再由 `$jin-story-development` 形成获批 Story Package；本 Skill 只接收 Story Package，不复制 Sera Canon 或自行续写剧情。
-- 菲比、糯糯与 Q版 Sera 的固定三人内容使用独立 Q版 Skill，不在这里重复其角色、声音和 15 秒经验。
-- 骨骼深度控制视频与严格动作迁移使用独立 motion-transfer Skill，不进入普通提示词流程。
+- 需要确认成女 Sera 的人物、世界观、视觉规律或 Canon 时，先读取独立仓库 `weoiquan-art/sera-universal`（`$sera-universal`）；Story 再由 `$jin-story-development` 形成获批 Story Package。本 Skill 只接收已确认事实，不复制 Sera Canon 或自行续写剧情。
+- Q版社交短视频已经单飞。用户提到菲比、糯糯、Q版 Sera、咕嘎或既有 Q版日常生产经验时，引导到独立仓库 `weoiquan-art/chibi-` 的 Q版 Skill；本仓不复制其角色、声音、15 秒模板或成功样本。
+- 骨骼深度控制视频与严格动作迁移使用独立 motion-transfer Skill；当前普通视频流程不加载、不展开该能力。
 
 ## 上下文预算与模块路由（硬规则）
 
@@ -43,6 +43,7 @@ description: >-
 - 用户提供或要求故事板时，读 references/storyboard-workflow.md。
 - 用户要求理解模板字段时，读 references/annotated-template.md；只要成品提示词时不读。
 - 原始案例、样本视频、研究记录与 practical-case Skills 只在样本学习时读取，不进入普通生成上下文。
+- 需要确认成女 Sera 的 Canon / 世界观 / 视觉规律时，读取 `$sera-universal`；需要 Q版日常内容时，转到 `weoiquan-art/chibi-`，不要在本仓重建对应规则。
 - 确认需要实际生成／编辑角色、空场景、道具、VFX、分镜或白膜资产时，转交 `$jin-gpt-image-director`；本仓只提供需求与职责，不展开生图或 Astra 制作方法。
 
 一次只选能改变当前决定的最小模块集合。某个模块已经足够完成任务时，不因为其他模块存在就继续加载。
