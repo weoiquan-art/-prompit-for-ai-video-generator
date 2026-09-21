@@ -1,20 +1,23 @@
 ---
 name: asset-director
-description: Decide the minimum visual assets an AI video shot actually needs, assign each asset one precise responsibility, and prepare a handoff to the external image-asset skill. Use for character, clean scene plate, prop, VFX, storyboard, shot-keyframe, end-frame, continuity-frame, or previs decisions. Do not generate the assets here.
+description: Decide the sufficient, non-conflicting visual assets an AI video actually needs, assign each asset one precise responsibility, and prepare a handoff to the external image-asset skill. Use for character, clean scene plate, prop, VFX, storyboard, shot-keyframe, end-frame, continuity-frame, or previs decisions. Do not generate the assets here.
 ---
 
 # Asset Director
 
 只判断：
 
-1. 当前镜头是否真的缺资产；
-2. 缺哪一种资产；
-3. 每份资产只锁什么；
-4. 怎样交接给 `$jin-gpt-image-director`。
+1. 当前视频有哪些必须被资产稳定承载的职责；
+2. 已有资产是否已经充分覆盖；
+3. 缺哪一种资产、每份资产只锁什么；
+4. 职责是否重复、冲突或超过平台容量；
+5. 怎样交接给 `$jin-gpt-image-director`。
 
 本 Skill 不写生图 Prompt、不设计 Blender 制作步骤，也不直接生成或编辑视觉资产。
 
-## 默认结论：普通内容先不新增；独特场景必须先检查
+## 起点：先盘点职责，再决定是否新增
+
+目标不是资产数量最少，而是**职责覆盖充分、彼此不冲突、平台实际可用**。同一角色可以同时需要身份图、人物在场景关键帧和真实尾帧，因为它们承担不同职责；不要仅因主体相同就强行合并。
 
 已有身份资产加清楚的视频 Prompt 对普通日常内容通常已经足够。以下内容默认留在视频 Prompt：
 
@@ -26,9 +29,9 @@ description: Decide the minimum visual assets an AI video shot actually needs, a
 
 动作存在不等于需要动作资产；道具出现不等于需要道具资产；**普通日常地点**发生在某处也不等于必须生成场景资产。
 
-但如果当前地点是专属世界、专属建筑、文明空间、剧情关键地点，或镜头动作依赖明确的内外关系、地标、门墙结构、通道、平台等空间事实，则必须先检查是否已有可用 Scene Plate。没有时，场景资产是基础资产候选，不应因为“最小资产原则”被默认跳过。
+但如果当前地点是专属世界、专属建筑、文明空间、剧情关键地点，或镜头动作依赖明确的内外关系、地标、门墙结构、通道、平台等空间事实，则必须先检查是否已有可用 Scene Plate。没有时，场景资产是基础资产候选，不应为了追求更少资产而被默认跳过。
 
-## 新增资产门槛
+## 资产进入方案的门槛
 
 每一项新增资产必须同时回答：
 
@@ -105,7 +108,7 @@ description: Decide the minimum visual assets an AI video shot actually needs, a
 2. 检查本镜真正会被看清的身份、场景、道具和特殊视觉事实。
 3. 若地点是独特世界场景／剧情关键场景，先检查 Scene Plate 是否存在且结构职责足够；不要把这一检查留到成片失败后。
 4. 检查现有资产与文字是否已经足够。
-5. 若不够，选择能直接解决主风险的最小资产类型。
+5. 若不够，选择能直接解决主风险且与已有职责重叠最少的资产类型。
 6. 若需要人物与场景的组合站位，分类为故事板／镜头关键帧／previs，不把它伪装成“场景资产”。
 7. 形成交接单；实际制作转给 `$jin-gpt-image-director`。
 
@@ -152,4 +155,4 @@ description: Decide the minimum visual assets an AI video shot actually needs, a
 只交付上述获批资产；由资产 Skill 决定生成、编辑、故事板或 Astra／白膜的具体制作方法。
 ```
 
-素材判断必须服务当前镜头，不追求资产数量最大化。
+素材判断必须服务当前视频：不追求数量最大化，也不把数量最少当作成功标准。

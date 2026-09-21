@@ -1,7 +1,7 @@
 interface:
   display_name: "JIN Video Director Flow"
-  short_description: "按需调用导演模块，生成轻量、可执行的视频提示词"
-  default_prompt: "Use $jin-video-director-flow to turn my confirmed idea and references into the minimum necessary scene plan and a copy-ready video prompt."
+  short_description: "从粗糙想法推导导演重点、资产方案与可执行视频提示词"
+  default_prompt: "Use $jin-video-director-flow to turn my rough or confirmed story idea and references into director priorities, a sufficient role-based asset plan, and a copy-ready video prompt."
   icon_small: "./assets/icon.svg"
   icon_large: "./assets/icon.svg"
 policy:
