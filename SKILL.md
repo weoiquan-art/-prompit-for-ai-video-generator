@@ -39,6 +39,7 @@ description: >-
 | 目标模型为 Seedance 2.0／2.5，或需要选择版本与提示词密度 | references/seedance-version-routing.md |
 | 已有成片发生明确故障，需要定位原因 | skills/failure-diagnostics/SKILL.md |
 | 用户提供原 Prompt、资产与成片，要求提炼经验 | skills/sample-learning/SKILL.md |
+| 成女 Sera 视频明确要求沿用当前试片模板，或借鉴净水渠与 LibTV《第 0 层》节点写法 | references/sera-current-video-template.md；故事事实仍先核对 `sera-universal`，正式剧情需获批 Story Package |
 
 补充材料同样按需读取：
 
