@@ -9,6 +9,8 @@ description: Develop a rough AI-video story idea into an evidence-aware director
 
 本流程来自 LibTV Agent 的“Seedance 导演前期筹备”方法，并经过 JIN 的 Sera 25 秒试片验证。吸收的是完整工作顺序，不是该案例的固定四张资产、固定镜头数或风格词。
 
+当任务明确是**成女 Sera 的新视频、试片，或要求借鉴净水渠／LibTV《第 0 层》视频节点写法**时，按需读取 [当前 Sera 视频提示词模板](../../references/sera-current-video-template.md)。先用当前故事事实，再借鉴模板的首帧、资产分工和逐镜景别／职能；不把两份案例的剧情、资产数量或外部作者风格标签写成全局规则。
+
 ## 第 0 步：可见性核对
 
 先声明真正看到了什么：
