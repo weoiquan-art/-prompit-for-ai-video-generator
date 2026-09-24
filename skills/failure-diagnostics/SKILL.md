@@ -1,6 +1,6 @@
 ---
 name: failure-diagnostics
-description: Predict and diagnose high-impact AI video generation failures from the current shot, references, spatial blocking, performance and prompt. Use to derive a short task-specific guard list instead of a generic negative-prompt dump, or to study why a generated result failed.
+description: Review generated AI video against confirmed goals and actual prompts/references; trace style, character, camera and action errors to the earliest evidenced cause and plan a minimal retest. Also predict shot-specific failures and derive a short guard list before generation.
 ---
 
 # Failure Diagnostics
@@ -8,6 +8,29 @@ description: Predict and diagnose high-impact AI video generation failures from 
 只处理“本次任务最可能怎样崩，以及怎样用最少限制拦住它”。
 
 当前检查吸收 `../practical-case-skills/cinedance-v4/SKILL.md` 的第一帧、空间、参考上下文和镜头漂移实操经验，以及 `../practical-case-skills/acting-system/SKILL.md` 的木偶表演故障观察。
+
+## 已生成视频复查流程
+
+仅在已有真实成片且用户要求复查、诊断或修正时执行；生成前的风险预检继续使用下文。不要把计划稿、事后改写的 Prompt 当作实际提交内容。
+
+1. **收齐可核对输入。** 对齐用户已确认的意图与禁项、实际提交的完整 Prompt、参考文件及图号／上传顺序、首尾帧或关键帧、模型／时长／比例设置和成片。资料缺失时先做可见问题盘点；无法看到原 Prompt 或实际参考素材，就不能断言“哪句话导致了它”。
+2. **逐段验收画面。** 记录时间点与“期望 → 实际”；按本片目标检查风格（手机实拍／CG、材质、光色、人物融入场景）、人物（身份、数量、比例、服装、状态与发声）、场景和道具（结构、实体数量、前后状态）、机位与动作（第一帧、POV 一侧、路径、因果、连续性），以及必要的声音。明确记录已经正确的部分，修复时保留。
+3. **逐条回查 Prompt 怎样影响画面。** 对每个偏差引用实际 Prompt 的原句和对应图号，再对照成片解释：是句子直接要求了该结果、具体动作／空间句与抽象意图冲突、角色或指代不清、参考图职责混淆、必要状态缺失，还是同一时间塞入过多动作／风格信息导致控制变弱？例如用户要“路过”，Prompt 却写“远处看见 → 一直向前走 → 越来越近”，应指出这组空间句更像走向角色。没有匹配原句时写“Prompt 未明确约束”，不得编造句子或把推测当成模型内部机制。
+4. **定位最早偏差并标明把握程度。** 按“原始身份／场景参考 → 新生成或编辑的视频资产 → 实际提交的图号顺序与 Prompt → 成片”核对。区分资产已错、Prompt 已错或互相矛盾、输入正确但成片偏离、平台限制与来源不明。用“直接证据／合理假设／暂无法判断”标记；单次成片只能说明相关性，不能证明某个风格词或模型一定是唯一原因。
+5. **修正并复测。** 资产错误先修资产；Prompt 原句冲突就最小改写那一句及必要关联句；若输入清楚而成片违背，先做相同输入重试或针对单一歧义的对照测试，再考虑模型随机性或能力边界。保留原 Prompt、资产与成片基线，下一轮尽量只改一个变量，并指定视频中应出现的可见验收结果。用户只要复查时先交诊断，不自行重写已获批提示词。
+
+复查涉及 Q 版角色身份、实体感或声音时，核对 `weoiquan-art/chibi-` 的固定规则；涉及成年 Sera 身份、家乡或世界规律时，只把 `weoiquan-art/sera-universal` 当作 Canon 核对来源。POV／空间、表演、连续性和资产问题分别按需交回 `shot-designer`、`performance-director`、`continuity-director`、`asset-director`。需要归档“实际 Prompt＋资产＋成片”并提炼可复用经验时再读 `sample-learning`；不要把单个故障升级成 Canon 或全局写法。
+
+### 成片复查输出
+
+```text
+【已核对输入】实际 Prompt / 图号与资产 / 模型设置 / 成片；缺失项
+【保留项】已经达到目标的风格、人物或镜头
+【偏差】时间点｜目标 → 实际｜风格 / 人物 / 场景道具 / 机位动作 / 声音
+【Prompt → 画面链】原句或未约束项＋参考图号 → 可能的画面理解 → 对应成片证据
+【最早偏差与把握程度】阶段｜直接证据 / 合理假设 / 暂无法判断
+【最小修正与下一轮判据】只改哪一句或哪份资产｜下次看见什么才算修好
+```
 
 ## 先找冲突源
 
@@ -91,7 +114,7 @@ description: Predict and diagnose high-impact AI video generation failures from 
 6. 生成结果已经失败时，区分：提示词设计问题、资产问题、模型随机失败、平台能力限制、未知来源。
 7. 如果失败来自 Prompt 太长，先删掉不参与当前画面的角色、参考、旧场景、装饰性形容词和重复规则，再考虑增加新限制。
 
-## 输出
+## 生成前风险预检输出
 
 ```text
 【高风险失败】
