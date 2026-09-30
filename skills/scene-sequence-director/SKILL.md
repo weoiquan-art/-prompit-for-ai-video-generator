@@ -23,6 +23,8 @@ description: Plan a complete dramatic scene across several few-second or tens-of
 
 ## 整场共享锚点
 
+先继承上游 director brief 的“空间与位置”及其确认／跳过状态，保留用户事实与获准假设来源；据此建图，不自行重定已确认物理关系。
+
 在逐镜设计前建立最小 Scene Anchor Map：
 
 1. 固定结构与地标：门、墙、走廊、桌、出口、地平线等；

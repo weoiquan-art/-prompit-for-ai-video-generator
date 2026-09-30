@@ -1,6 +1,6 @@
 ---
 name: idea-parser
-description: Turn rough natural-language video ideas into a compact director brief without forcing the user to fill a formal template. Use when the input is fragmentary, emotional, visual, or only describes what should happen before/after a shot.
+description: Turn rough natural-language video ideas into a compact director brief and expose missing spatial facts before prompting. Use for fragmentary story input or multiple characters/key props with missing positions, distances, or arrival actions. Exclude footage diagnosis, sample learning, asset acceptance, and iteration after a confirmed spatial table.
 ---
 
 # Idea Parser
@@ -26,15 +26,18 @@ description: Turn rough natural-language video ideas into a compact director bri
 2. 把抽象情绪翻译成“可见变化目标”，但不要在本 Skill 中设计完整表演细节。
 3. 每个候选镜头必须能说清楚：起点 → 过程 → 结果。
 4. 若一个想法包含多个独立结果，标记为可能需要拆镜；不要强行在一个镜头里塞完。
-5. 只有缺失信息会改变镜头数量、角色身份、核心动作、衔接方向或结尾时才提问。
-6. 若缺失信息仍可合理推断，做最小假设继续。
+5. 缺失信息会改变镜头数量、角色身份、核心动作、衔接方向、结尾或空间关系的故事读法时，须确认；粗糙输入与空间缺口统一使用下述接收流程，不各问一轮。
+6. 可提出最小执行假设；触发接收确认时先展示事实、假设与待确认项，确认后再继续。用户明确要求跳过确认时，展示全部空间假设后继续，不逐项追问。
+
+## 统一接收确认
+
+实际触发条件、任务排除、整体跳过、动作来由与心理动机的边界、每场最多 4 个关键时刻的合并空间表、一张文字俯视示意、每轮最多 3 问及下游继承，统一读取 [零散想法的意图保真解析](references/rough-idea-intent-fidelity.md) 的“统一接收确认”一节。输入完整或已有确认结果时不重复接收确认；表和示意用于展示候选事实，不替代下游锚点与连续性设计。
 
 ## 输出
 
-输出一个简短 director brief：
+先用一句话复述理解，再输出正文最多 10 行的 director brief；仅在空间流程触发时附空间表和一张示意，提问合计最多 3 个：
 
 ```text
-【镜头意图】
 上一镜入口：
 本镜唯一事件：
 角色变化：
@@ -43,6 +46,7 @@ description: Turn rough natural-language video ideas into a compact director bri
 下一镜出口：
 时长 / 画幅：
 已有素材：
+空间与位置：见空间表（确认状态／事实与假设来源）
 不确定项：
 ```
 

@@ -21,6 +21,8 @@ description: Design shot-to-shot continuity and match transitions for AI video. 
 
 ## 入口检查
 
+将上游 brief 已确认的空间关系、获准假设与关键时刻变化纳入检查，保留来源；实际成片偏差仍按既有验收规则处理，不为迁就偏差改写已确认故事。
+
 记录上一镜结尾：
 
 - 当前真正出镜的角色 / 参考有哪些；
