@@ -34,6 +34,8 @@ AI 的职责不是自由改编，而是：
 
 本节合并“先复述、最多 3 问、确认 brief 后再写完整 Prompt”和空间事实确认。两者共用一次接收流程、同一份 director brief 和每轮最多 3 个问题；不新建平行模块。确认后的空间内容交给既有 scene-sequence-director、shot-designer、continuity-director 执行，本节不复制其锚点、机位或连续性规则。
 
+含对抗／打斗且目的、总时长、结尾或节奏缺任一项时，同时按 [理解、空间与战斗的接收补充](intake-understanding-and-spatial-confirmation.md) 处理。该参考与本节共用同一份 brief 和每轮最多 3 问，不另建接收流程；本节继续负责已有空间与意图保真规则。
+
 ### 入口判断与退出
 
 依次判断：

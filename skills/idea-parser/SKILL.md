@@ -1,6 +1,6 @@
 ---
 name: idea-parser
-description: Turn rough natural-language video ideas into a compact director brief and expose missing spatial facts before prompting. Use for fragmentary story input or multiple characters/key props with missing positions, distances, or arrival actions. Exclude footage diagnosis, sample learning, asset acceptance, and iteration after a confirmed spatial table.
+description: Turn rough natural-language video ideas into a compact director brief and expose missing spatial facts before prompting. Use for fragmentary story input, multiple characters/key props with missing spatial facts, or confrontation/combat missing purpose, duration, ending, or rhythm. Exclude footage diagnosis, sample learning, asset acceptance, and iteration after a confirmed spatial table.
 ---
 
 # Idea Parser
@@ -26,27 +26,27 @@ description: Turn rough natural-language video ideas into a compact director bri
 2. 把抽象情绪翻译成“可见变化目标”，但不要在本 Skill 中设计完整表演细节。
 3. 每个候选镜头必须能说清楚：起点 → 过程 → 结果。
 4. 若一个想法包含多个独立结果，标记为可能需要拆镜；不要强行在一个镜头里塞完。
-5. 缺失信息会改变镜头数量、角色身份、核心动作、衔接方向、结尾或空间关系的故事读法时，须确认；粗糙输入与空间缺口统一使用下述接收流程，不各问一轮。
-6. 可提出最小执行假设；触发接收确认时先展示事实、假设与待确认项，确认后再继续。用户明确要求跳过确认时，展示全部空间假设后继续，不逐项追问。
+5. 缺失信息会改变镜头数量、角色身份、核心动作、衔接方向、结尾或空间关系的故事读法时，须确认；对抗／打斗缺目的、总时长、结尾或节奏时也触发。理解、空间与战斗统一使用下述接收流程，不各问一轮。
+6. 可提出最小执行假设；触发接收确认时先展示事实、假设与待确认项，确认后再继续。明确跳过时展示空间与节奏假设后继续，不逐项追问，也不编造战斗缘由或胜负。
 
 ## 统一接收确认
 
-实际触发条件、任务排除、整体跳过、动作来由与心理动机的边界、每场最多 4 个关键时刻的合并空间表、一张文字俯视示意、每轮最多 3 问及下游继承，统一读取 [零散想法的意图保真解析](references/rough-idea-intent-fidelity.md) 的“统一接收确认”一节。输入完整或已有确认结果时不重复接收确认；表和示意用于展示候选事实，不替代下游锚点与连续性设计。
+空间确认、动作来由、表格上限及意图保真沿用 [零散想法的意图保真解析](references/rough-idea-intent-fidelity.md#统一接收确认)。对抗／打斗触发时读取 [理解、空间与战斗的接收补充](references/intake-understanding-and-spatial-confirmation.md)，由同一入口提供功能表、提问优先级、招式提醒与收尾关系；目的与结尾都为 [待确认] 时只给 3–4 行粗骨架，回答后再展开。共用一份 brief 和每轮最多 3 问，不替代下游设计。
 
 ## 输出
 
-先用一句话复述理解，再输出正文最多 10 行的 director brief；仅在空间流程触发时附空间表和一张示意，提问合计最多 3 个：
+先用一句话复述理解，再输出正文最多 10 行的 director brief；空间触发时附空间表和一张示意，战斗触发时并附功能表，提问合计最多 3 个。目的与结尾在现有字段中记录，不为战斗增加正文行数：
 
 ```text
 上一镜入口：
-本镜唯一事件：
+本镜唯一事件 / 战斗目的：
 角色变化：
 摄影机必须看见：
-本镜落点：
+本镜落点 / 结尾与收尾关系：
 下一镜出口：
 时长 / 画幅：
 已有素材：
-空间与位置：见空间表（确认状态／事实与假设来源）
+空间与位置：见空间表；战斗时并附功能表（确认状态与来源）
 不确定项：
 ```
 
