@@ -5,7 +5,7 @@ description: >-
   into evidence-aware director priorities, a sufficient asset plan, shot
   structure, and copy-ready AI video prompts. Use for idea-to-prompt
   preproduction, ordinary single shots, multi-shot scene sequencing, camera and
-  blocking, visible performance, continuity, asset handoff, or generation
+  blocking, action-scene choreography, visible performance, continuity, asset handoff, or generation
   diagnosis. Q-version social videos, Sera canon/world questions, and
   skeleton-depth motion transfer are routed to their separate skills or
   repositories.
@@ -25,7 +25,7 @@ description: >-
 
 ## 上下文预算与模块路由（硬规则）
 
-普通、信息完整的单镜头任务只读本文件并直接完成。只有条件真实成立时才加载下表对应模块：
+普通、信息完整的单镜头任务只读本文件并直接完成；需要编排攻防、追逐或连续身体对抗时，即使单镜也读取动作戏写作参考。只有条件真实成立时才加载下表对应模块：
 
 | 当前任务出现什么 | 按需读取 |
 |---|---|
@@ -33,6 +33,7 @@ description: >-
 | 零散想法需要简短 brief；多人／关键道具的空间事实有缺口；或对抗／打斗缺目的、总时长、结尾、节奏中的任一项 | skills/idea-parser/SKILL.md |
 | 一个事件需要数个几秒／几十秒片段共同完成 | skills/scene-sequence-director/SKILL.md |
 | 单镜的机位、空间揭示、blocking 或运镜复杂 | skills/shot-designer/SKILL.md |
+| 写作或修订打斗、追逐、连续身体对抗；需要把动作、镜头与环境融合成可执行段落 | references/action-scene-writing.md；跨段编排或复杂机位再按需加载上面两个模块 |
 | 情绪与人物关系需要转成细微可见表演 | skills/performance-director/SKILL.md |
 | 必须继承上一段的运动、构图、视线或环境状态 | skills/continuity-director/SKILL.md |
 | 镜头在最终提示词前需要判断已有资产是否足够；出现独特世界场景、剧情承载结构、场景连续性或明确资产缺口时 | skills/asset-director/SKILL.md |
@@ -46,7 +47,7 @@ description: >-
 - 抽象叙事难以转成可见事实，或需要比较 9–30 秒拆法时，读 references/visible-facts-and-duration-examples.md。
 - 用户提供或要求故事板时，读 references/storyboard-workflow.md。
 - 用户要求理解模板字段时，读 references/annotated-template.md；只要成品提示词时不读。
-- 原始案例、样本视频、研究记录与 practical-case Skills 只在样本学习时读取，不进入普通生成上下文。
+- 原始案例、样本视频、研究记录与 practical-case Skills 只在样本学习时读取，不进入普通生成上下文。已提炼并获准的 `references/action-scene-writing.md` 属于生产写作参考，动作戏写作时直接调用；无需重读整份案例。
 - 需要确认成女 Sera 的 Canon / 世界观 / 视觉规律时，读取 `$sera-universal`；需要 Q版日常内容时，转到 `weoiquan-art/chibi-`，不要在本仓重建对应规则。
 - 确认需要实际生成／编辑角色、空场景、道具、VFX、分镜或白膜资产时，转交 `$jin-gpt-image-director`；本仓只提供需求与职责，不展开生图或 Astra 制作方法。
 
@@ -123,7 +124,8 @@ description: >-
 ### 5. 策划秒数与模型时间控制分层
 
 - **策划秒数**用于判断内容装不装得下、生成要拆几段、剪辑怎样组合。
-- **模型时间戳**只是可选控制。动作简单且关键落点必须精准时可以使用；动作复杂、因果链长或自然表演更重要时，使用镜头／阶段顺序和清楚状态。
+- **阶段时间区间**可用于组织简单或复杂动作的内容容量、快慢节奏与观察重点；正文仍写清状态先后、重叠与继承，不因出现区间就宣称逐秒服从。
+- **精确时间点、帧数与动作次数**是另一层控制，只有验收确实依赖这些数量时才使用，并为其留下可辨认的时间。自然过程更重要时，使用阶段顺序与相对时间；不因打斗复杂就自动删除有用的阶段区间。
 
 策划表里的秒数不必原样抄入最终 Prompt。30 秒单次生成也不是默认单位；只有同地点、同时间、同一因果链连续推进且整体生成更有利时才考虑。
 
@@ -205,7 +207,7 @@ description: >-
 3. **想清观众看见什么。** 用一句话写出片段结束时观众比开头多知道或多感受到什么；再决定单镜或多镜、每镜唯一职能、切镜理由，以及同场共享的空间、光源和行动方向。策划时长服务内容容量，不把某个成功案例的时长或镜头数当模板。
 4. **判断资产职责并交接。** 检查已有身份与场景资料；从会复用的身份、场景、道具、连续性和难镜头控制反推充分配置，逐张写清职责、不继承项与验收点。职责重复、互相冲突或超过平台容量时再合并或取舍。确需制作时交给 $jin-gpt-image-director；视频 Skill 负责“需要什么”，资产 Skill 负责“怎样生成／编辑”。没有实际文件时，只交付需求单，不声称资产已就绪。
 5. **验收交回的实际资产。** 对照职责查看真正要提交的图片，而非只检查生图提示词或缩略预览；核对身份、服装、可数结构（如辫子／配饰数量）、场景方向和人物入场关键帧的起始状态。发现高辨识度错误，先退回修图；不要靠视频 Prompt 与错误图片对抗。人物入场关键帧不等于无人 Scene Plate，也不是每个项目必备。
-6. **基于资产状态写视频 Prompt。** 已验收资产按实际上传顺序逐图分工，写清同一场景的锚点、起幅 → 行动／反应 → 结果、切镜后的状态继承；声音和少量失败保险最后加入。资产未完成时，若用户正在做前期规划，可以输出带具名占位符的“规划草案”；若用户要可直接提交生成的最终 Prompt，则先停在资产交接。任何情况下都不把计划中的图片当作已提交参考。
+6. **基于资产状态写视频 Prompt。** 已验收资产按实际上传顺序逐图分工，写清同一场景的锚点、起幅 → 行动／反应 → 结果、切镜后的状态继承；声音和少量失败保险最后加入。动作戏在此调用 `references/action-scene-writing.md`：先确定前一轮结果怎样改变下一轮条件，再将双方动作、镜头、道具与环境响应融合为同一时间线中的可复制段落。资产未完成时，若用户正在做前期规划，可以输出带具名占位符的“规划草案”；若用户要可直接提交生成的最终 Prompt，则先停在资产交接。任何情况下都不把计划中的图片当作已提交参考。
 7. **交付或执行生成。** 用户只要提示词时，交付可复制版本；用户明确要求且入口可用时才继续提交生成。保存实际提交的提示词、参考文件与图号顺序、平台／模型设置；计划稿不得冒充实际输入。
 8. **按成片复盘。** 用户给出真实视频时读取 `skills/failure-diagnostics/SKILL.md`。先按“作者实际 Prompt 原句／图号 → 成片实际可见结果 → 模型可能抓到的可执行单元”建立证据链；可执行单元优先拆成主体、当前状态、方向／路径、接触点、受力或特效传播、环境结果与摄影机任务。第三层只属于工作推定，必须标明把握程度，不得冒充模型内部机制，也不得先套现有 Skill 再反推成片。随后分别判断**导演层任务是否完成**与**微观字面指令是否逐项完成**；高密度动作的精确次数、帧数或逐招顺序若无法从成片数清，只能记为“密度成立、次数未核验”或“部分执行”。再沿原图 → 视频资产 → 实际输入 → 成片找最早偏差，保留已成功部分，只做下一轮最小变量测试。只有要提炼可复用经验时才进入 sample-learning，不把单次结果升级为全局规则。
 
