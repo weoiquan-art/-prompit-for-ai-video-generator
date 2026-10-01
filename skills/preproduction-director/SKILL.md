@@ -1,6 +1,7 @@
 ---
 name: preproduction-director
-description: Develop a rough AI-video story idea into an evidence-aware director brief, dramatic beats, director priorities, a sufficient role-based asset plan, and a three-layer prompt draft. Use when the user provides background or plot direction and wants the complete path from idea to producible prompt rather than only a compact single-shot brief.
+description: >-
+  Coordinate approved story material into a complete AI-video production plan: whole-film information order, scene purpose and duration, shot and generation-unit handoffs, sufficient assets, continuity, and standard copy-ready prompts. Use for 1–5 minute short dramas or a full idea-to-prompt production request; route unresolved plot decisions to Story Development and avoid expanding simple clips into a full-film workflow.
 ---
 
 # Preproduction Director
@@ -9,7 +10,11 @@ description: Develop a rough AI-video story idea into an evidence-aware director
 
 本流程来自 LibTV Agent 的“Seedance 导演前期筹备”方法，并经过 JIN 的 Sera 25 秒试片验证。吸收的是完整工作顺序，不是该案例的固定四张资产、固定镜头数或风格词。
 
-当任务明确是**成女 Sera 的新视频、试片，或要求借鉴净水渠／LibTV《第 0 层》视频节点写法**时，按需读取 [当前 Sera 视频提示词模板](../../references/sera-current-video-template.md)。先用当前故事事实，再借鉴模板的首帧、资产分工和逐镜景别／职能；不把两份案例的剧情、资产数量或外部作者风格标签写成全局规则。
+先继承 idea-parser 的规模与当前材料阶段。完整短剧读取 [短剧导演流程](../../references/short-drama-direction.md)，承接已批准剧情后负责整片导演安排。只有粗 idea 时先交独立 Story Development，不由本模块编动机、选择和结局；用户已批准的完整剧情无需再送审。
+
+普通片段只做本次有用的筹备。用户要求完整交付且上游条件成立时，协调下游直到最终 Prompt，不停在资产清单或第一镜；单元之间共享已定事实，不各自重问。
+
+通用输出使用 [统一模板](../../assets/clean-template.md)。成女 Sera 项目按需读取 [Sera 专用边界与案例来源](../../references/sera-current-video-template.md)；不把案例的首帧、人物、资产数量或风格变成通用规则。
 
 ## 第 0 步：可见性核对
 
@@ -32,9 +37,9 @@ description: Develop a rough AI-video story idea into an evidence-aware director
 
 不要给每句话机械贴标签；只标记用户需要辨别可信度的结论。
 
-进入第 2 步前，按 [idea-parser](../idea-parser/SKILL.md) 的统一接收规则判断；触发且未确认时，先交付 brief、空间与必要战斗功能表，不提前展开完整 Prompt。目的与结尾都待确认时先保留 3–4 行粗骨架。已完成、完整输入或明确整体跳过时继续，继承 brief 的空间、功能与节奏，不在本模块重问或自行补定；排除任务回到对应任务流程。
+进入第 2 步前，按 [idea-parser](../idea-parser/SKILL.md) 区分已有事实、执行选择和重要未决项。故事缺口返回故事协作；执行缺口由对应导演模块给方案。只有关键事实未定时先停在该阶段；已确认、完整输入或授权范围内的直接交付继续，不在本模块重问。短剧故事未定时不提前展开逐场空间和招式问卷。
 
-## 第 2 步：故事理解与导演重点
+## 第 2 步：故事理解、整片安排与导演重点
 
 1. 提取背景事实、角色目标、不可改动设定和片尾必须到达的状态。
 2. 用一句话写出戏剧引擎：观众真正观看的变化或选择是什么。
@@ -43,11 +48,13 @@ description: Develop a rough AI-video story idea into an evidence-aware director
 5. 指出模型最容易夸大、误解、穿帮或失去连续性的最大风险。
 6. 把抽象心理与判断转换成可见动作、视线、停顿、构图、环境反应或声音变化。
 
-不得为了让节拍完整而擅自增加反转、怪物、爆炸、新关系、Canon 或结局。
+完整短剧按 short-drama-direction 交付具体的开头画面与理由、信息释放顺序、分场作用与策划时长，核对各场合计。将各场入口、已定事件、必须看见的信息和出口交给 scene-sequence；接回实际镜头清单后形成 S 场号／镜号／G 生成单元对应表。故事节拍、镜头、生成单元分别记录。
+
+节奏可以采用用户希望的平和、起伏与消化结果，但不固定三段比例。混合场戏按阶段目标分配动作、表演和声音，连续性跨阶段保留疲劳、损伤与关系变化。不得为了让节拍完整而擅自增加反转、怪物、爆炸、新关系、Canon 或结局。
 
 ## 第 3 步：资产准备方案
 
-从会复用或需要精确控制的视觉职责反推资产，不先规定张数。
+先有足以判断可见范围的镜头计划，再从复用与精确控制的职责反推资产，允许两者相互校正。整片先列复用清单，再为每个生成单元选相关子集，不先规定张数。
 
 按需检查：
 
@@ -74,13 +81,13 @@ description: Develop a rough AI-video story idea into an evidence-aware director
 5. 空间 → 前中后景、左右、深处／前景、上游／下游、入口／出口与移动路径；
 6. 风险词 → 正向尺度边界、允许变化与少量必要禁止项；
 7. 风格标签 → 光线、色彩、颗粒、景深、构图、摄影机稳定度与表演等可见功能；
-8. 声音 → 与画面事件同步的对白、环境声、动作声、静默或音乐策略。
+8. 声音 → 获批事件中的对白、环境声、动作声、静默或音乐策略；写清画内／画外归属及跨镜起止。
 
 不要把 IMAX 70mm、A24、诺兰、8K、UE5、Lumen 或摄影机型号当作自动生效的翻译结果。
 
-## 第 5 步：三层视频 Prompt
+## 第 5 步：协作汇总为统一视频 Prompt
 
-按当前平台支持的引用方式输出：
+接回 scene-sequence 的镜头与单元映射、shot 的构图路线、performance 的表演／身体过程、asset 的实际绑定与 continuity 的进入／交出状态，检查它们描述同一事件。按 [统一输出模板](../../assets/clean-template.md) 逐单元交付，引用方式以当前平台实际绑定为准：
 
 ### 第一层：参考资产职责
 
@@ -100,7 +107,7 @@ description: Develop a rough AI-video story idea into an evidence-aware director
 
 ### 第三层：逐镜分镜
 
-每镜按需要包含：
+外层采用“镜号｜时长或局部区间｜景别｜机位·拍法”以及“画面／台词·声音／出片要点”。画面正文融合以下必要内容，不分别重复一遍字段：
 
 - 策划时长与唯一职能；
 - 景别、机位和摄影机运动的观察目的；
@@ -109,19 +116,23 @@ description: Develop a rough AI-video story idea into an evidence-aware director
 - 声音；
 - 出片重点和向下一镜交付的状态。
 
-策划秒数不自动等于模型必须逐秒服从的时间戳。
+导演解释、整片时间位置与待办放在复制区外；本次生成的局部时间、真实引用和执行正文放在区内。策划秒数不自动等于模型必须逐秒服从的时间戳。用户要全片 Prompt 时覆盖全部已确定单元；未验收资产的单元明确保留为草案，不冒充可提交版本。
 
 ## 第 6 步：自检、开放问题与下一步
 
 交付前检查：
 
 - 是否残留不能被看见的抽象词；
-- 每一镜是否只有一个主要变化；
+- 每镜是否围绕一个主要叙事任务，必要动作阶段与双方互动是否保留；
 - 风险镜头是否同时有正向尺度、过程和结束状态；
 - 资产是否逐项分工，关键帧与身份资产是否混用；
 - 空间方向、角色状态和道具关系是否连续；
 - 风格词是否已转换成可见功能；
-- 是否为了时长或模板增加了新剧情。
+- 是否为了时长或模板增加了新剧情；
+- 场次、镜号与生成单元是否能逐项对应，是否漏掉请求范围中的后续单元；允许一场多镜、一单元多镜及明确设计的长镜接续；
+- 整片策划合计、各单元生成时长和局部区间是否一致且未混用；
+- 参考标签、持有者与当前形态是否与正文一致；
+- 出片要点能否在画面或声音中验收。
 
 只处理制作中新增、会改变身份、故事、资产、镜头方向或结尾的必要开放问题；不重复已确认或已授权选择的入口项。理解、空间与战斗问题始终共享每轮最多 3 问；明确整体跳过时不再逐项追问空间与节奏假设。其他执行细节做最小、可撤回的创作判断继续。
 
@@ -134,9 +145,10 @@ description: Develop a rough AI-video story idea into an evidence-aware director
 ```text
 【可见性与来源】
 【故事理解与导演重点】
+【整片安排／各场分镜与生成单元】（完整短剧；片段只给当前镜头方案）
 【资产准备方案】
 【素材上传顺序】
-【三层视频 Prompt】
+【逐生成单元的统一视频 Prompt】
 【开放问题】
 【下一步】
 ```

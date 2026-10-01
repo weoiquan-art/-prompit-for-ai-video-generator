@@ -1,11 +1,13 @@
 ---
 name: scene-sequence-director
-description: Plan a complete dramatic scene across several few-second or tens-of-seconds AI video shots. Use when a rough idea, dialogue scene, same-location event, reveal, reaction chain, fight, or under-one-minute story needs shared spatial anchors, shot functions, edit logic, production-duration estimates, and a decision between one continuous generation and multiple generated clips before shot-level prompting.
+description: Turn a confirmed scene or approved short-drama scene into audience information beats, pacing, a concrete shot list, motivated cuts or long takes, and mapped generation units. Use for dialogue, reveals, reaction chains, fights, multi-shot events, and individual scenes within a 1–5 minute film. Inherit plot causes and outcomes from Story Development; do not invent them from a rough idea.
 ---
 
 # Scene Sequence Director
 
-位于 `idea-parser` 与 `shot-designer` 之间。只负责把一个完整场戏拆成可生产的镜头／生成片段，并让它们共享同一空间与因果；不替代逐镜摄影设计、微表演或最终 Prompt。
+接收 idea-parser 中已确定的片段，或 preproduction 从获批故事交来的单场 brief，再交给 shot-designer。负责一场戏怎样被观众经历：信息先后、节拍、紧张与缓和、行动与反应、切镜及生成拆分。正式剧情的目标、选择和后果由 Story Development 提供；本模块不替代编剧、逐镜摄影、微表演或最终 Prompt 汇总。
+
+完整短剧中的每场共用整片决定，不把 1–5 分钟整体当一个生成单元。发现因果缺口时说明它影响哪场并交回上游，不以增加招式、对白或反转补洞。
 
 普通单镜或已经明确的 Q版日常 8–15 秒内容不必强制经过本 Skill。只有确实需要多镜头、多个生成片段、对白关系或跨镜连续性时才启用。
 
@@ -14,12 +16,18 @@ description: Plan a complete dramatic scene across several few-second or tens-of
 先回答：
 
 - 场戏开始时，人物、关系、威胁与观众知道什么；
-- 场戏结束时，哪些状态发生了不可逆变化；
+- 场戏结束时，人物、关系、信息或行动条件发生什么变化；不要求每场都出现永久不可逆事件；
 - 观众在中间依次需要看懂哪些信息；
 - 哪一个可见事件让下一镜成为必要；
 - 哪些内容必须连续，哪些内容允许切开重做。
 
 若删掉某镜后观众仍得到完全相同的信息与情绪，该镜应合并或删除。镜头数来自故事变化，不来自配额。
+
+## 用节拍组织一场戏
+
+先将获批事件整理为本场具体的信息与反应顺序：当前条件 → 已定行动 → 对方／环境响应 → 改变后的条件。因果中不存在的动机、结果或能力不可补造。
+
+平和、起伏与平和可用于本场节奏，但不必每场都走一遍。停顿可以让观众察觉、等待或消化后果；安静不等于无事件，高潮后的安静仍继承人物状态。根据当前任务安排对白、身体动作与环境观察，不能把所有场戏套成攻防段落。
 
 ## 整场共享锚点
 
@@ -85,6 +93,14 @@ description: Plan a complete dramatic scene across several few-second or tens-of
 - 自然对白／表演或相对过程更重要时，可只保留镜头标签、清楚先后与相对时间；
 - 精确帧数、出手次数与阶段区间分开判断，不能由区间长度推导固定招数。使用区间时，内容容量要合理、总时长要一致，切换处说明正在持续的动作或余波。
 
+## 切镜与连续观察要作出选择
+
+为当前场戏提出具体推荐方案，并简述关键镜头为何保留、为何在此切镜或保持一镜到底。不要只列“可以切／也可以不切”而不作决定。
+
+连续镜头适合需要保留实时因果、行动路线、空间关系或不中断观察的段落；仍需安排内部阶段、走位与注意力交接。需要独立看清反应、细节或改变时空时可切镜。长镜与多镜均服务当前事件，没有普遍稳定性优劣。
+
+分别记录实际镜头数、镜间剪切和重要的镜内景别变化；以画面范围与变化原因校验，不设每十秒几次的配额。阶段标签或时间区间不自动算新镜头。计划跨素材接成一个长镜时说明接续接口和未验证风险。
+
 ## 决定生成单元
 
 优先考虑一次连续生成的情况：同一地点、同一时间、动作或对白连续推进，且连续性收益大于整段失败后的重生成成本。
@@ -109,7 +125,7 @@ description: Plan a complete dramatic scene across several few-second or tens-of
 - 当前动作已经形成可承接的结束状态；
 - 独立生成能显著降低关键镜头的失败成本。
 
-每次切镜写清触发点、下一镜接收的状态与观众注意力落点。
+每次切镜写清触发点、下一镜接收的状态与观众注意力落点。声音可跨镜：分别写清旧镜台词延续至新画面、或新镜声音提前进入旧画面；只使用已批准的声画事件。换角度重演同一次动作时标明事件身份与时间重叠，不能误写成第二次攻击或重复计入事件次数。
 
 ## 输出
 
@@ -118,8 +134,8 @@ description: Plan a complete dramatic scene across several few-second or tens-of
 1. 场戏目标与观众认知变化；
 2. 入口状态与出口状态；
 3. Scene Anchor Map；
-4. 镜头／片段清单：制作预估秒数、镜头职能、可见事实、摄影机任务、切镜理由、结束状态；
-5. 生成单元方案：哪些同段生成，哪些独立生成；
+4. 具体镜头清单：镜号、制作预估、主要职能、可见事实与初步构图、观察重点、切镜／连续拍摄理由、结束状态；另记录镜头数及必要景别变化；
+5. 生成单元方案：G 编号对应哪些镜号、成片位置、生成目标时长、局部区间、资产和进入／交出状态；完整短剧回交 preproduction 汇总；
 6. 交给 `shot-designer` 的逐镜 brief。
 
 需要表格时使用 `../../assets/scene-sequence-plan-template.md`。
