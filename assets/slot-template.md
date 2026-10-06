@@ -1,7 +1,7 @@
 # 逐段固定槽位模板（默认输出格式）
 状态：JIN 指定为默认。把握：低；待测。成功样本（偷骨头、偷薯条、红蓝第三版、作者原提示词）都带此头部，没有对照；每条只生成 1 次，角色、场景、故事难度都不同，不能把成功归因于模板。没看到成片，只有 JIN 的描述。来源与测试记录：[slot-template-evidence](../evidence/slot-template-evidence.md)；作者原文：[author-prompt-guwu-crow](../evidence/author-prompt-guwu-crow.md)。其他成功格式也存在，经验不绑定本格式；旧格式见 [clean-template](clean-template.md)。
 
-〔〕为待填位置；头部的"默认"是作者自带值，作用没测过，JIN 指定时可整行省略；没有的字段整行删除。不额外加 IMAX、masterpiece 等质量词。
+〔〕为待填位置；头部的"默认"（8K、60fps、50mm、全局限制等）是作者自带值，保留并标待测，作用没测过，JIN 指定时可整行省略；没有的字段整行删除。不额外加 IMAX、masterpiece 等质量词（头部默认值除外）。
 
 ```text
 【分辨率】〔默认：8K超高清电影级画质〕
