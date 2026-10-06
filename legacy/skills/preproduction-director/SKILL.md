@@ -14,7 +14,7 @@ description: >-
 
 普通片段只做本次有用的筹备。用户要求完整交付且上游条件成立时，协调下游直到最终 Prompt，不停在资产清单或第一镜；单元之间共享已定事实，不各自重问。
 
-通用输出使用 [统一模板](../../assets/clean-template.md)。成女 Sera 项目按需读取 [Sera 专用边界与案例来源](../../references/sera-current-video-template.md)；不把案例的首帧、人物、资产数量或风格变成通用规则。
+通用输出使用 [统一模板](../../../assets/clean-template.md)。成女 Sera 项目按需读取 [Sera 专用边界与案例来源](../../references/sera-current-video-template.md)；不把案例的首帧、人物、资产数量或风格变成通用规则。
 
 ## 第 0 步：可见性核对
 
@@ -87,7 +87,7 @@ description: >-
 
 ## 第 5 步：协作汇总为统一视频 Prompt
 
-接回 scene-sequence 的镜头与单元映射、shot 的构图路线、performance 的表演／身体过程、asset 的实际绑定与 continuity 的进入／交出状态，检查它们描述同一事件。按 [统一输出模板](../../assets/clean-template.md) 逐单元交付，引用方式以当前平台实际绑定为准：
+接回 scene-sequence 的镜头与单元映射、shot 的构图路线、performance 的表演／身体过程、asset 的实际绑定与 continuity 的进入／交出状态，检查它们描述同一事件。按 [统一输出模板](../../../assets/clean-template.md) 逐单元交付，引用方式以当前平台实际绑定为准：
 
 ### 第一层：参考资产职责
 

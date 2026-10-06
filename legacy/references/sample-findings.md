@@ -2,19 +2,19 @@
 
 ## 样本材料
 
-- 原始提示词：`references/original-prompt-treatment-scan.md`
-- 约 15 秒成片：`assets/samples/treatment-scan-15s.mp4`
-- 约 7 秒成片：`assets/samples/treatment-scan-7s.mp4`
-- 约 5 秒成片：`assets/samples/window-dialogue-5s.mp4`
-- 约 7 秒故事板成片：`assets/samples/stair-reunion-7s.mp4`
-- 场景材料：`assets/samples/scene-reference-occupied.png`、`assets/samples/scene-reference-empty.png`
-- 第三段样本原始提示词：`references/original-prompt-window-dialogue.md`
-- 故事板样本原始提示词：`references/original-prompt-stair-reunion-storyboard.md`
-- 故事板样本五张参考：`assets/samples/stair-reunion-face-b.png`、`stair-reunion-outfit-b.jpg`、`stair-reunion-character-a.jpg`、`stair-reunion-scene.jpg`、`stair-reunion-storyboard.jpg`
-- 凉亭动接样本原始提示词：`references/original-prompt-pavilion-leaf-transition.md`
-- 凉亭动接约 7 秒成片：`assets/samples/pavilion-leaf-transition-7s.mp4`
-- 凉亭场景参考：`assets/samples/pavilion-scene-reference.jpg`
-- 当前界面显示但疑似错配的角色预览：`assets/samples/pavilion-role-reference-ui-mismatch.jpg`；不得把它当作真实生成输入的证据。
+- 原始提示词：`legacy/references/original-prompt-treatment-scan.md`
+- 约 15 秒成片：`legacy/assets/samples/treatment-scan-15s.mp4`
+- 约 7 秒成片：`legacy/assets/samples/treatment-scan-7s.mp4`
+- 约 5 秒成片：`legacy/assets/samples/window-dialogue-5s.mp4`
+- 约 7 秒故事板成片：`legacy/assets/samples/stair-reunion-7s.mp4`
+- 场景材料：`legacy/assets/samples/scene-reference-occupied.png`、`legacy/assets/samples/scene-reference-empty.png`
+- 第三段样本原始提示词：`legacy/references/original-prompt-window-dialogue.md`
+- 故事板样本原始提示词：`legacy/references/original-prompt-stair-reunion-storyboard.md`
+- 故事板样本五张参考：`legacy/assets/samples/stair-reunion-face-b.png`、`stair-reunion-outfit-b.jpg`、`stair-reunion-character-a.jpg`、`stair-reunion-scene.jpg`、`stair-reunion-storyboard.jpg`
+- 凉亭动接样本原始提示词：`legacy/references/original-prompt-pavilion-leaf-transition.md`
+- 凉亭动接约 7 秒成片：`legacy/assets/samples/pavilion-leaf-transition-7s.mp4`
+- 凉亭场景参考：`legacy/assets/samples/pavilion-scene-reference.jpg`
+- 当前界面显示但疑似错配的角色预览：`legacy/assets/samples/pavilion-role-reference-ui-mismatch.jpg`；不得把它当作真实生成输入的证据。
 
 > **现行工作流边界（2026-09-17）：**本文件保存历史样本观察，只在样本学习时读取。样本中“场景图已有角色”的做法不再是当前生产规则，也不能推广为跨模型机制。当前场景资产使用无人干净底图；人物身份使用独立角色资产；人物与场景的站位组合改由故事板、镜头关键帧或白膜／previs 承担。以下原始提示词与当时观察保留不改，用于追溯经验。
 

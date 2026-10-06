@@ -31,7 +31,7 @@ description: Learn reusable AI video prompting methods from paired original prom
 
 当前保留分支：
 
-`../practical-case-skills/`
+`../../../skills/practical-case-skills/`
 
 ## 证据纪律
 

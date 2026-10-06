@@ -7,7 +7,7 @@ description: Review generated AI video against confirmed goals and actual prompt
 
 只处理“本次任务最可能怎样崩，以及怎样用最少限制拦住它”。
 
-当前检查吸收 `../practical-case-skills/cinedance-v4/SKILL.md` 的第一帧、空间、参考上下文和镜头漂移实操经验，以及 `../practical-case-skills/acting-system/SKILL.md` 的木偶表演故障观察。
+当前检查吸收 `../../../skills/practical-case-skills/cinedance-v4/SKILL.md` 的第一帧、空间、参考上下文和镜头漂移实操经验，以及 `../../../skills/practical-case-skills/acting-system/SKILL.md` 的木偶表演故障观察。
 
 ## 已生成视频复查流程
 

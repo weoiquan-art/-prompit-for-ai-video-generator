@@ -11,7 +11,7 @@ description: >-
 
 只负责“这一镜怎样被摄影机看见并完整发生”。
 
-当前方法吸收了 `../practical-case-skills/cinedance-v4/SKILL.md` 中已经用于 Seedance / Higgsfield 实操的空间 blocking、第一帧与镜头控制经验，但不照搬其全部平台特定参数。
+当前方法吸收了 `../../../skills/practical-case-skills/cinedance-v4/SKILL.md` 中已经用于 Seedance / Higgsfield 实操的空间 blocking、第一帧与镜头控制经验，但不照搬其全部平台特定参数。
 
 ## 核心要求
 
@@ -281,7 +281,7 @@ description: >-
 
 ## 内部设计与镜头卡骨架
 
-以下字段用于内部核对，或用于用户明确要求的导演镜头卡。最终交付统一进入 [clean-template](../../assets/clean-template.md) 的镜头标题、画面、台词／声音与出片要点；不把每项内部检查都作为独立标题。动作段按 [动作戏写作方法](../../references/action-scene-writing.md) 融合双方互动、接触与结果；日常与情绪段同样按当前任务合成连续画面，不强加攻防和环境破坏。
+以下字段用于内部核对，或用于用户明确要求的导演镜头卡。最终交付统一进入 [clean-template](../../../assets/clean-template.md) 的镜头标题、画面、台词／声音与出片要点；不把每项内部检查都作为独立标题。动作段按 [动作戏写作方法](../../references/action-scene-writing.md) 融合双方互动、接触与结果；日常与情绪段同样按当前任务合成连续画面，不强加攻防和环境破坏。
 
 ```text
 【本镜唯一任务】

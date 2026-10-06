@@ -7,7 +7,7 @@ description: Design shot-to-shot continuity and match transitions for AI video. 
 
 负责镜头之间“状态怎样真实继承”，尤其是动接、遮挡接、视线接、连续运镜与多镜头内部连续性。
 
-当前方法吸收 `../practical-case-skills/cinedance-v4/SKILL.md` 的 multi-shot continuity 与 `../practical-case-skills/acting-system/SKILL.md` 的 state inertia 实操经验。
+当前方法吸收 `../../../skills/practical-case-skills/cinedance-v4/SKILL.md` 的 multi-shot continuity 与 `../../../skills/practical-case-skills/acting-system/SKILL.md` 的 state inertia 实操经验。
 
 ## 长片分段：按实际成片承接
 

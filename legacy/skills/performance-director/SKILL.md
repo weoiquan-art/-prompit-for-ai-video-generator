@@ -9,7 +9,7 @@ description: Translate character intent, pressure, reaction and emotion into vis
 
 > **让角色在当前目标与压力下做出可见行为，情绪从行为中自然出现。**
 
-当前方法吸收 `../practical-case-skills/acting-system/SKILL.md` 中已经用于 Seedance 实操的表演经验，同时保留 JIN 原本的微表演控制方式。
+当前方法吸收 `../../../skills/practical-case-skills/acting-system/SKILL.md` 中已经用于 Seedance 实操的表演经验，同时保留 JIN 原本的微表演控制方式。
 
 ## 先确认角色为什么动
 

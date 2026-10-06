@@ -1,6 +1,6 @@
 # 统一模板：字段职责、导演决定与缺口处理
 
-最终模型正文使用 [clean-template](../assets/clean-template.md)。本文件用于理解、设计或排查模板字段；不把这些解释抄入 Prompt。外层稳定，内部密度随当前事件变化。
+最终模型正文使用 [clean-template](../../assets/clean-template.md)。本文件用于理解、设计或排查模板字段；不把这些解释抄入 Prompt。外层稳定，内部密度随当前事件变化。
 
 ## 写作前的检查
 
